@@ -1,14 +1,9 @@
-import { createServer } from 'http';
-import { readFileSync, existsSync } from 'fs';
-import { join, extname } from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
-const DIST_DIR = join(__dirname, 'dist');
+const DIST_DIR = path.join(__dirname, 'dist');
 
 const mimeTypes = {
   '.html': 'text/html',
@@ -24,22 +19,22 @@ const mimeTypes = {
   '.woff2': 'font/woff2',
 };
 
-const server = createServer((req, res) => {
-  let filePath = join(DIST_DIR, req.url === '/' ? 'index.html' : req.url);
+const server = http.createServer((req, res) => {
+  let filePath = path.join(DIST_DIR, req.url === '/' ? 'index.html' : req.url);
   
   // Remove query strings
   filePath = filePath.split('?')[0];
   
   // If file doesn't exist, serve index.html (SPA routing)
-  if (!existsSync(filePath) || !extname(filePath)) {
-    filePath = join(DIST_DIR, 'index.html');
+  if (!fs.existsSync(filePath) || !path.extname(filePath)) {
+    filePath = path.join(DIST_DIR, 'index.html');
   }
   
-  const ext = extname(filePath);
+  const ext = path.extname(filePath);
   const contentType = mimeTypes[ext] || 'application/octet-stream';
   
   try {
-    const content = readFileSync(filePath);
+    const content = fs.readFileSync(filePath);
     res.writeHead(200, { 'Content-Type': contentType });
     res.end(content);
   } catch (err) {

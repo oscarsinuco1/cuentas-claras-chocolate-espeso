@@ -21,20 +21,22 @@ ENV VITE_WS_URL=$VITE_WS_URL
 # Build
 RUN npm run build
 
-# Production image with nginx
-FROM nginx:alpine AS runner
+# Production image
+FROM node:20-alpine AS runner
 
-# Copy nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-# Copy built assets
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Copy built assets and server
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/server.js ./
 
 # Add non-root user
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nextjs -u 1001 && \
-    chown -R nextjs:nodejs /var/cache/nginx /var/run /var/log/nginx
+    chown -R nextjs:nodejs /app
 
-EXPOSE 80
+USER nextjs
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+
+CMD ["node", "server.js"]
