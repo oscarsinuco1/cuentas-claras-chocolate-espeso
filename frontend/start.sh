@@ -1,2 +1,2 @@
 #!/bin/bash
-npx serve -s dist -l ${PORT:-3000}
+npx serve dist -l tcp://0.0.0.0:${PORT:-3000} --single
