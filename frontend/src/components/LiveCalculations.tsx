@@ -1,0 +1,160 @@
+import { useMemo } from 'react';
+import { ArrowRight, Copy, PartyPopper } from 'lucide-react';
+import type { Participant, Expense, Currency } from '@/types';
+import { formatMoney } from '@/utils/currency';
+
+interface Props {
+  participants: Participant[];
+  expenses: Expense[];
+  currency: Currency;
+}
+
+interface Balance {
+  participantId: string;
+  name: string;
+  totalExpenses: number;
+  multiplier: number;
+  owes: number;
+  balance: number;
+  paymentLink?: string | null;
+}
+
+interface Transfer {
+  from: string;
+  fromName: string;
+  to: string;
+  toName: string;
+  amount: number;
+  paymentLink?: string | null;
+}
+
+export default function LiveCalculations({ participants, expenses, currency }: Props) {
+  const calculation = useMemo(() => {
+    const activeParticipants = participants.filter(p => p.isActive);
+    
+    if (activeParticipants.length === 0) {
+      return null;
+    }
+
+    // Calculate totals
+    const totalExpenses = expenses.reduce((sum, e) => sum + Number(e.amount), 0);
+    const totalPeople = activeParticipants.reduce((sum, p) => sum + p.multiplier, 0);
+    const perPersonShare = totalPeople > 0 ? totalExpenses / totalPeople : 0;
+
+    // Calculate balances
+    const balances: Balance[] = activeParticipants.map(p => {
+      const totalPaid = expenses
+        .filter(e => e.participantId === p.id)
+        .reduce((sum, e) => sum + Number(e.amount), 0);
+      
+      const owes = perPersonShare * p.multiplier;
+      const balance = totalPaid - owes;
+
+      return {
+        participantId: p.id,
+        name: p.name,
+        totalExpenses: totalPaid,
+        multiplier: p.multiplier,
+        owes,
+        balance,
+        paymentLink: p.paymentLink,
+      };
+    });
+
+    // Calculate transfers (simplified algorithm)
+    const transfers: Transfer[] = [];
+    const debtors = balances.filter(b => b.balance < -0.01).map(b => ({ ...b }));
+    const creditors = balances.filter(b => b.balance > 0.01).map(b => ({ ...b }));
+
+    debtors.sort((a, b) => a.balance - b.balance); // Most negative first
+    creditors.sort((a, b) => b.balance - a.balance); // Most positive first
+
+    for (const debtor of debtors) {
+      let remaining = Math.abs(debtor.balance);
+      
+      for (const creditor of creditors) {
+        if (remaining < 0.01 || creditor.balance < 0.01) continue;
+        
+        const amount = Math.min(remaining, creditor.balance);
+        if (amount >= 0.01) {
+          transfers.push({
+            from: debtor.participantId,
+            fromName: debtor.name,
+            to: creditor.participantId,
+            toName: creditor.name,
+            amount: Math.round(amount * 100) / 100,
+            paymentLink: creditor.paymentLink,
+          });
+          remaining -= amount;
+          creditor.balance -= amount;
+        }
+      }
+    }
+
+    return {
+      summary: {
+        totalExpenses,
+        totalPeople,
+        perPersonShare,
+      },
+      balances,
+      transfers,
+    };
+  }, [participants, expenses]);
+
+  if (!calculation || participants.length === 0) {
+    return null;
+  }
+
+  const { transfers } = calculation;
+
+  // No transfers needed
+  if (transfers.length === 0) {
+    return (
+      <div className="card text-center py-8">
+        <PartyPopper className="w-16 h-16 mx-auto mb-3 text-green-500" />
+        <p className="text-2xl font-bold text-slate-800">Todos a paz y salvo!</p>
+        <p className="text-slate-500 mt-1">No hay transferencias pendientes</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="card">
+      <h3 className="font-bold text-lg mb-4 text-slate-800">
+        💸 Quien paga a quien
+      </h3>
+      <div className="space-y-3">
+        {transfers.map((t, i) => (
+          <div 
+            key={i} 
+            className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200"
+          >
+            <div className="flex items-center gap-2 flex-1 flex-wrap">
+              <span className="font-bold text-slate-800">{t.fromName}</span>
+              <ArrowRight className="w-5 h-5 text-amber-500" />
+              <span className="font-bold text-slate-800">{t.toName}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-black text-xl text-amber-700">
+                {formatMoney(t.amount, currency)}
+              </span>
+              {t.paymentLink && (
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(t.paymentLink!);
+                    alert('Copiado: ' + t.paymentLink);
+                  }}
+                  className="p-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white transition-all"
+                  title="Copiar info de pago"
+                >
+                  <Copy className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

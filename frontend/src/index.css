@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --gradient-kahoot: linear-gradient(135deg, #46178f 0%, #1368ce 50%, #26890c 100%);
+  --gradient-fun: linear-gradient(135deg, #ff6b6b 0%, #feca57 25%, #48dbfb 50%, #ff9ff3 75%, #54a0ff 100%);
+}
+
+body {
+  @apply text-slate-900 min-h-screen;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-attachment: fixed;
+}
+
+/* Fast input styling - minimal decoration for speed */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Kahoot-style components */
+@layer components {
+  .btn {
+    @apply px-5 py-3.5 rounded-xl font-bold transition-all duration-200 
+           active:scale-95 focus:outline-none focus:ring-4 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
+           shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply btn text-white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    @apply hover:brightness-110 focus:ring-purple-400;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white/90 text-slate-700 hover:bg-white focus:ring-slate-300 backdrop-blur-sm;
+  }
+
+  .btn-success {
+    @apply btn text-white;
+    background: linear-gradient(135deg, #26890c 0%, #66bf39 100%);
+    @apply hover:brightness-110 focus:ring-green-400;
+  }
+
+  .btn-danger {
+    @apply btn text-white;
+    background: linear-gradient(135deg, #e21b3c 0%, #ff3355 100%);
+    @apply hover:brightness-110 focus:ring-red-400;
+  }
+
+  .btn-kahoot {
+    @apply btn text-white;
+    background: linear-gradient(135deg, #46178f 0%, #1368ce 100%);
+    @apply hover:brightness-110 focus:ring-purple-400;
+  }
+
+  .input {
+    @apply w-full px-4 py-3.5 text-lg rounded-xl border-2 border-slate-200
+           focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500/20
+           placeholder:text-slate-400 transition-all duration-200
+           bg-white shadow-sm text-slate-800;
+  }
+
+  .input-amount {
+    @apply input text-right font-mono text-xl font-bold text-slate-800;
+  }
+
+  .card {
+    @apply bg-white rounded-3xl p-5 border-0
+           transition-all duration-300;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+
+  .card-gradient {
+    @apply rounded-3xl shadow-xl border-0 p-5 text-white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+  }
+
+  .card-success {
+    @apply rounded-3xl shadow-xl border-0 p-5 text-white;
+    background: linear-gradient(135deg, #26890c 0%, #66bf39 100%);
+    box-shadow: 0 10px 40px rgba(38, 137, 12, 0.4);
+  }
+
+  .card-warning {
+    @apply rounded-3xl shadow-xl border-0 p-5;
+    background: linear-gradient(135deg, #ffa602 0%, #ffc107 100%);
+    box-shadow: 0 10px 40px rgba(255, 166, 2, 0.4);
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold shadow-md;
+  }
+
+  .glass {
+    @apply backdrop-blur-xl border border-white/30 rounded-2xl;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-xl border border-white/20 rounded-2xl;
+    background: linear-gradient(135deg, rgba(70, 23, 143, 0.98) 0%, rgba(19, 104, 206, 0.98) 100%);
+  }
+}
+
+/* Fun Animations */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  0% { transform: translateX(100px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(102, 126, 234, 0.5), 0 0 20px rgba(102, 126, 234, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 40px rgba(102, 126, 234, 0.5); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes rainbow-border {
+  0% { border-color: #ff6b6b; }
+  16% { border-color: #feca57; }
+  33% { border-color: #48dbfb; }
+  50% { border-color: #66bf39; }
+  66% { border-color: #ff9ff3; }
+  83% { border-color: #54a0ff; }
+  100% { border-color: #ff6b6b; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out infinite;
+}
+
+.animate-rainbow-border {
+  border-width: 3px;
+  animation: rainbow-border 3s linear infinite;
+}
+
+/* Stagger animations for lists */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Fun hover effects */
+.hover-pop:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+.hover-shake:hover {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2, #667eea);
+}
