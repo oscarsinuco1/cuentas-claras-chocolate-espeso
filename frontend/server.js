@@ -5,6 +5,11 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const DIST_DIR = path.join(__dirname, 'dist');
 
+console.log('Starting server...');
+console.log('PORT:', PORT);
+console.log('DIST_DIR:', DIST_DIR);
+console.log('DIST_DIR exists:', fs.existsSync(DIST_DIR));
+
 const mimeTypes = {
   '.html': 'text/html',
   '.js': 'application/javascript',
@@ -20,6 +25,8 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
+  console.log('Request:', req.method, req.url);
+  
   let filePath = path.join(DIST_DIR, req.url === '/' ? 'index.html' : req.url);
   
   // Remove query strings
@@ -38,11 +45,12 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': contentType });
     res.end(content);
   } catch (err) {
+    console.error('Error reading file:', filePath, err.message);
     res.writeHead(404);
     res.end('Not Found');
   }
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
