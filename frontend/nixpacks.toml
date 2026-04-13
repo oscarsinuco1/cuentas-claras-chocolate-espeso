@@ -1,0 +1,14 @@
+# Nixpacks config for Railway
+providers = ["node"]
+
+[phases.setup]
+nixPkgs = ["nodejs_20", "nginx"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npx serve -s dist -l $PORT"
