@@ -14,6 +14,7 @@ interface Props {
 export default function QuickExpenseForm({ planCode, participants, currency }: Props) {
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
+  const [multiplier, setMultiplier] = useState('1');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -47,12 +48,15 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
 
     setIsSubmitting(true);
     try {
+      const mult = parseInt(multiplier, 10) || 1;
       await expenseApi.quickAdd(planCode, {
         participantName: trimmedName,
         amount: numAmount,
+        multiplier: mult > 1 ? mult : undefined,
       });
       setName('');
       setAmount('');
+      setMultiplier('1');
       toast.success(`+${formatMoney(numAmount, currency)}`, { duration: 1000 });
       inputRef.current?.focus();
     } catch {
@@ -116,8 +120,8 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
           )}
         </div>
 
-        {/* Amount + Submit row */}
-        <div className="flex gap-3">
+        {/* Amount + Multiplier + Submit row */}
+        <div className="flex gap-2">
           <div className="relative flex-1">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">$</span>
             <input
@@ -129,6 +133,18 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
               placeholder="0"
               className="input pl-10 text-xl font-bold"
               autoComplete="off"
+              disabled={isSubmitting}
+            />
+          </div>
+          <div className="flex items-center gap-1 bg-purple-50 rounded-xl px-2">
+            <span className="text-purple-600 font-bold text-sm">x</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={multiplier}
+              onChange={(e) => setMultiplier(e.target.value.replace(/\D/g, '').slice(0, 2) || '')}
+              onBlur={() => !multiplier && setMultiplier('1')}
+              className="w-8 bg-transparent text-center font-bold text-purple-700 text-lg focus:outline-none"
               disabled={isSubmitting}
             />
           </div>

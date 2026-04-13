@@ -22,6 +22,7 @@ const quickAddExpenseSchema = z.object({
   participantName: z.string().min(1).max(50),
   amount: z.number().positive(),
   description: z.string().max(200).optional(),
+  multiplier: z.number().int().min(1).max(10).optional(),
 });
 
 export async function expenseRoutes(fastify: FastifyInstance) {
@@ -100,15 +101,19 @@ export async function expenseRoutes(fastify: FastifyInstance) {
         data: {
           planId: plan.id,
           name: body.participantName,
+          multiplier: body.multiplier ?? 1,
         },
       });
       await historyService.record(plan.id, 'CREATE_PARTICIPANT', 'PARTICIPANT', participant.id, null, participant);
       await publishEvent(getPlanChannel(code), { type: 'PARTICIPANT_ADDED', data: participant });
-    } else if (!participant.isActive) {
-      // Reactivate
+    } else if (!participant.isActive || (body.multiplier && participant.multiplier !== body.multiplier)) {
+      // Reactivate and/or update multiplier
       participant = await prisma.participant.update({
         where: { id: participant.id },
-        data: { isActive: true },
+        data: { 
+          isActive: true,
+          ...(body.multiplier && { multiplier: body.multiplier }),
+        },
       });
     }
 

@@ -70,7 +70,7 @@ export const expenseApi = {
   add: (planCode: string, data: { participantId: string; amount: number; description?: string }) =>
     request<Expense>(`/plans/${planCode}/expenses`, { method: 'POST', body: JSON.stringify(data) }),
 
-  quickAdd: (planCode: string, data: { participantName: string; amount: number; description?: string }) =>
+  quickAdd: (planCode: string, data: { participantName: string; amount: number; description?: string; multiplier?: number }) =>
     request<Expense>(`/plans/${planCode}/expenses/quick`, { method: 'POST', body: JSON.stringify(data) }),
 
   update: (planCode: string, expenseId: string, data: { amount?: number; description?: string }) =>
