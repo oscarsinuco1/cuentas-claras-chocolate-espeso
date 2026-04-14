@@ -6,9 +6,9 @@ export default {
       colors: {
         // Stitch Light Mode palette - customColor: #13ec6d
         light: {
-          bg: '#F5F7FA',
+          bg: '#FFFFFF',
           card: '#FFFFFF',
-          hover: '#F0F2F5',
+          hover: '#F5F7FA',
           border: '#E4E6EB',
           elevated: '#FFFFFF',
         },

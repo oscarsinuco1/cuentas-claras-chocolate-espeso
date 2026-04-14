@@ -69,7 +69,7 @@ export default function CalculationModal({ planCode, onClose }: Props) {
                 <h3 className="font-semibold mb-3 text-text-primary">Balance por persona</h3>
                 <div className="space-y-2">
                   {data.balances.map((b) => (
-                    <div key={b.participantId} className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: '#F5F7FA' }}>
+                    <div key={b.participantId} className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: '#F0F2F5' }}>
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: '#13ec6d' }}>
                           {b.name.charAt(0)}

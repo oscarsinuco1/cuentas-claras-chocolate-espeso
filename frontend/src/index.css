@@ -9,9 +9,9 @@
   -moz-osx-font-smoothing: grayscale;
   
   /* Stitch Light Mode palette - #13ec6d green */
-  --color-bg: #F5F7FA;
+  --color-bg: #FFFFFF;
   --color-card: #FFFFFF;
-  --color-hover: #F0F2F5;
+  --color-hover: #F5F7FA;
   --color-border: #E4E6EB;
   --color-primary: #13ec6d;
   --color-primary-hover: #10D760;

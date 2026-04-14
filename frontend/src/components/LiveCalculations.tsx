@@ -129,7 +129,7 @@ export default function LiveCalculations({ participants, expenses, currency }: P
           <div 
             key={i} 
             className="flex items-center justify-between p-3 rounded-lg"
-            style={{ backgroundColor: '#F5F7FA', border: '1px solid #E4E6EB' }}
+            style={{ backgroundColor: '#F0F2F5', border: '1px solid #E4E6EB' }}
           >
             <div className="flex items-center gap-2 flex-1 flex-wrap text-sm">
               <ArrowRightLeft className="w-4 h-4 text-primary-600\" />
