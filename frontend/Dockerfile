@@ -21,28 +21,19 @@ ENV VITE_WS_URL=$VITE_WS_URL
 # Build
 RUN npm run build
 
-# Production image
-FROM node:20-alpine AS runner
+# Production image with nginx
+FROM nginx:alpine AS runner
 
-WORKDIR /app
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy package files
-COPY package*.json ./
+# Copy built assets
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Install only production dependencies
-RUN npm ci --omit=dev
+# Copy entrypoint script
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
-# Copy built assets and server
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/server.js ./
+EXPOSE 80
 
-# Add non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nextjs -u 1001 && \
-    chown -R nextjs:nodejs /app
-
-USER nextjs
-
-EXPOSE 3000
-
-CMD ["node", "server.js"]
+CMD ["/docker-entrypoint.sh"]
