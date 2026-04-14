@@ -138,10 +138,10 @@ Código: ${code}`;
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="card text-center space-y-4 animate-bounce-in">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-red-100 flex items-center justify-center">
-            <AlertCircle className="w-8 h-8 text-red-500" />
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-coral-100 flex items-center justify-center">
+            <AlertCircle className="w-8 h-8 text-coral-500" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-800">Plan no encontrado</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Plan no encontrado</h1>
           <button onClick={() => navigate('/')} className="btn-primary">
             <Home className="w-5 h-5 mr-2 inline" />
             Volver al inicio
@@ -155,11 +155,11 @@ Código: ${code}`;
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <div className="relative">
-          <div className="w-16 h-16 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 flex items-center justify-center shadow-lg">
-            <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #3f918a 0%, #5aada6 100%)' }}>
+            <Loader2 className="w-8 h-8 text-white animate-spin" />
           </div>
         </div>
-        <p className="text-slate-500 text-sm font-medium">Cargando plan...</p>
+        <p className="text-gray-500 text-sm font-medium">Cargando plan...</p>
       </div>
     );
   }
@@ -170,29 +170,29 @@ Código: ${code}`;
   return (
     <div className="min-h-screen pb-16">
       {/* Header */}
-      <header className="sticky top-0 z-10 glass-dark shadow-2xl">
+      <header className="sticky top-0 z-10 bg-white shadow-md border-b border-gray-100">
         <div className="max-w-lg mx-auto px-3 py-2.5">
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
-              <h1 className="font-bold text-lg text-slate-800 truncate">{plan.name}</h1>
+              <h1 className="font-bold text-lg text-gray-800 truncate">{plan.name}</h1>
               <div className="flex items-center gap-1.5 text-xs">
-                <span className="font-mono text-slate-600 bg-slate-200/50 px-2 py-0.5 rounded">{code}</span>
-                <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-medium">{currency}</span>
-                <button onClick={handleCopy} className="p-1.5 hover:bg-slate-200/50 rounded-lg transition-colors">
-                  {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4 text-slate-500" />}
+                <span className="font-mono text-gray-600 bg-gray-100 px-2 py-0.5 rounded">{code}</span>
+                <span className="text-xs bg-primary-100 text-primary-700 px-2 py-0.5 rounded font-medium">{currency}</span>
+                <button onClick={handleCopy} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors">
+                  {copied ? <Check className="w-4 h-4 text-sage-500" /> : <Copy className="w-4 h-4 text-gray-400" />}
                 </button>
               </div>
             </div>
             <div className="flex items-center gap-3">
               {isConnected ? (
-                <div className="flex items-center gap-1 bg-emerald-100 px-2 py-1 rounded-full border border-emerald-200">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                  <span className="text-xs font-medium text-emerald-700">En vivo</span>
+                <div className="flex items-center gap-1 bg-sage-100 px-2 py-1 rounded-full border border-sage-200">
+                  <div className="w-2 h-2 bg-sage-500 rounded-full animate-pulse"></div>
+                  <span className="text-xs font-medium text-sage-700">En vivo</span>
                 </div>
               ) : (
-                <WifiOff className="w-4 h-4 text-slate-400" />
+                <WifiOff className="w-4 h-4 text-gray-400" />
               )}
-              <button onClick={handleShare} className="bg-blue-500 hover:bg-blue-600 p-2 rounded-xl transition-all shadow-lg shadow-blue-500/25">
+              <button onClick={handleShare} className="btn-primary p-2 rounded-xl">
                 <Share2 className="w-5 h-5 text-white" />
               </button>
             </div>
@@ -208,13 +208,13 @@ Código: ${code}`;
         </div>
 
         {/* Summary Card - Simple */}
-        <div className="card-gradient animate-slide-up stagger-1">
+        <div className="card animate-slide-up stagger-1" style={{ background: 'linear-gradient(135deg, #3f918a 0%, #5aada6 100%)' }}>
           <div className="text-center py-1">
-            <p className="text-slate-500 text-xs font-medium">Total gastos</p>
-            <p className="text-3xl font-bold text-slate-800">
+            <p className="text-white/80 text-xs font-medium">Total gastos</p>
+            <p className="text-3xl font-bold text-white">
               {formatMoney(totalExpenses, currency)}
             </p>
-            <p className="text-slate-400 text-sm">
+            <p className="text-white/70 text-sm">
               {participants.length} persona{participants.length !== 1 ? 's' : ''}
             </p>
           </div>
@@ -232,11 +232,11 @@ Código: ${code}`;
       </main>
 
       {/* Bottom Actions */}
-      <div className="fixed bottom-0 left-0 right-0 glass-dark p-3 shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 shadow-lg">
         <div className="max-w-lg mx-auto">
           <button
             onClick={() => setShowHistory(true)}
-            className="w-full py-2.5 bg-white/60 hover:bg-white/80 text-slate-700 font-semibold rounded-xl flex items-center justify-center gap-2 transition-all text-sm border border-white/50"
+            className="w-full py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-700 font-semibold rounded-xl flex items-center justify-center gap-2 transition-all text-sm border border-gray-200"
           >
             <History className="w-4 h-4" />
             Ver Historial

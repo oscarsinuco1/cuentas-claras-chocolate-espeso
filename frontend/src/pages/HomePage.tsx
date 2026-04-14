@@ -63,13 +63,13 @@ export default function HomePage() {
       <div className="w-full max-w-md space-y-6">
         {/* Logo & Title */}
         <div className="text-center space-y-4 animate-bounce-in">
-          <div className="w-20 h-20 mx-auto rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 flex items-center justify-center shadow-lg shadow-blue-500/10">
-            <Receipt className="w-10 h-10 text-blue-500" />
+          <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #3f918a 0%, #5aada6 100%)' }}>
+            <Receipt className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-slate-800">
+          <h1 className="text-3xl font-bold text-gray-800">
             Cuentas Claras
           </h1>
-          <p className="text-base text-slate-500 font-medium flex items-center justify-center gap-2">
+          <p className="text-base text-gray-600 font-medium flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4 text-amber-500" />
             Divide gastos de forma simple
             <Sparkles className="w-4 h-4 text-amber-500" />
@@ -79,10 +79,10 @@ export default function HomePage() {
         {/* Join Plan */}
         <div className="card animate-slide-up stagger-1">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #3f918a 0%, #5aada6 100%)' }}>
               <Users className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-lg font-semibold text-slate-800">Unirse a un plan</h2>
+            <h2 className="text-lg font-semibold text-gray-800">Unirse a un plan</h2>
           </div>
           <form onSubmit={handleJoin} className="flex gap-3">
             <input
@@ -97,7 +97,7 @@ export default function HomePage() {
             <button
               type="submit"
               disabled={isJoining || joinCode.length < 9}
-              className="btn-kahoot px-6"
+              className="btn-primary px-6"
             >
               {isJoining ? (
                 <span className="animate-spin">...</span>
@@ -110,18 +110,18 @@ export default function HomePage() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 animate-slide-up stagger-2">
-          <div className="flex-1 h-px bg-slate-300/50" />
-          <span className="text-sm text-slate-400">o</span>
-          <div className="flex-1 h-px bg-slate-300/50" />
+          <div className="flex-1 h-px bg-gray-200" />
+          <span className="text-sm text-gray-400">o</span>
+          <div className="flex-1 h-px bg-gray-200" />
         </div>
 
         {/* Create Plan */}
         <div className="card animate-slide-up stagger-3">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #5a9168 0%, #7aab86 100%)' }}>
               <Plus className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-lg font-semibold text-slate-800">Crear nuevo plan</h2>
+            <h2 className="text-lg font-semibold text-gray-800">Crear nuevo plan</h2>
           </div>
           <form onSubmit={handleCreate} className="space-y-4">
             <input
@@ -163,7 +163,7 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-sm text-slate-400 animate-slide-up stagger-4">
+        <p className="text-center text-sm text-gray-400 animate-slide-up stagger-4">
           Divide gastos facil y rapido
         </p>
       </div>

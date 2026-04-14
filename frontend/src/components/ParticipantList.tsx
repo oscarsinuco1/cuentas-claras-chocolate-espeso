@@ -6,14 +6,14 @@ import { formatMoney } from '@/utils/currency';
 import type { Participant, Expense, Currency } from '@/types';
 import clsx from 'clsx';
 
-// Color palette for avatars
+// Color palette for avatars - warm tones
 const avatarColors = [
-  'from-slate-500 to-slate-600',
-  'from-blue-500 to-blue-600',
-  'from-emerald-500 to-emerald-600',
+  'from-primary-500 to-primary-600',
+  'from-accent-500 to-accent-600',
+  'from-sage-500 to-sage-600',
   'from-amber-500 to-amber-600',
-  'from-rose-500 to-rose-600',
-  'from-violet-500 to-violet-600',
+  'from-coral-400 to-coral-500',
+  'from-primary-400 to-primary-500',
 ];
 
 interface Props {
@@ -132,19 +132,19 @@ export default function ParticipantList({ planCode, participants, expenses, curr
         className="w-full flex items-center justify-between"
       >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-            <Users className="w-4 h-4 text-blue-600" />
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #3f918a 0%, #5aada6 100%)' }}>
+            <Users className="w-4 h-4 text-white" />
           </div>
           <div className="text-left">
-            <span className="font-semibold text-slate-700">Participantes</span>
-            <p className="text-xs text-slate-400">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
+            <span className="font-semibold text-gray-800">Participantes</span>
+            <p className="text-xs text-gray-500">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
           </div>
         </div>
-        <div className={`p-2 rounded-lg transition-all ${isExpanded ? 'bg-blue-50' : 'bg-slate-50'}`}>
+        <div className={`p-2 rounded-lg transition-all ${isExpanded ? 'bg-gray-100' : 'bg-gray-50'}`}>
           {isExpanded ? (
-            <ChevronUp className="w-5 h-5 text-blue-500" />
+            <ChevronUp className="w-5 h-5 text-gray-600" />
           ) : (
-            <ChevronDown className="w-5 h-5 text-slate-400" />
+            <ChevronDown className="w-5 h-5 text-gray-400" />
           )}
         </div>
       </button>
@@ -158,13 +158,13 @@ export default function ParticipantList({ planCode, participants, expenses, curr
             const isEditing = editingId === p.id;
             
             return (
-              <div
+                <div
                 key={p.id}
                 className={clsx(
                   'rounded-lg border transition-all overflow-hidden',
                   isEditing 
-                    ? 'border-slate-300 bg-slate-50' 
-                    : 'border-slate-100 bg-white'
+                    ? 'border-primary-300 bg-primary-50' 
+                    : 'border-gray-100 bg-gray-50'
                 )}
               >
                 <div className="p-3">
@@ -186,7 +186,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                         placeholder="A dónde pagar (Nequi, cuenta, alias...)"
                       />
                       <div className="flex gap-2 items-center">
-                        <span className="text-sm text-slate-600">Paga por</span>
+                        <span className="text-sm text-gray-600">Paga por</span>
                         <input
                           type="text"
                           inputMode="numeric"
@@ -195,17 +195,17 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                           className="input py-2 w-16 text-center font-bold"
                           placeholder="1"
                         />
-                        <span className="text-sm text-slate-600">persona(s)</span>
+                        <span className="text-sm text-gray-600">persona(s)</span>
                       </div>
                       
                       {/* Edit expenses */}
                       {editExpenses.length > 0 && (
-                        <div className="border-t border-purple-200 pt-3 mt-3">
-                          <p className="text-sm font-bold text-slate-600 mb-2">Gastos:</p>
+                        <div className="border-t border-gray-200 pt-3 mt-3">
+                          <p className="text-sm font-bold text-gray-600 mb-2">Gastos:</p>
                           <div className="space-y-2">
                             {editExpenses.map((exp) => (
                               <div key={exp.id} className="flex items-center gap-2">
-                                <span className="text-slate-400 font-bold">$</span>
+                                <span className="text-gray-400 font-bold">$</span>
                                 <input
                                   type="text"
                                   inputMode="numeric"
@@ -215,9 +215,9 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                                 />
                                 <button 
                                   onClick={() => handleDeleteExpense(exp.id)}
-                                  className="p-1.5 hover:bg-red-100 rounded-lg"
+                                  className="p-1.5 hover:bg-coral-100 rounded-lg"
                                 >
-                                  <Trash2 className="w-4 h-4 text-red-500" />
+                                  <Trash2 className="w-4 h-4 text-coral-500" />
                                 </button>
                               </div>
                             ))}
@@ -242,10 +242,10 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                           {p.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <p className="font-bold text-slate-800">{p.name}</p>
+                          <p className="font-bold text-gray-800">{p.name}</p>
                           <div className="flex items-center gap-2 text-xs flex-wrap">
                             {p.multiplier > 1 && (
-                          <span className="bg-slate-200 text-slate-600 px-2 py-0.5 rounded text-xs">
+                          <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs">
                                 x{p.multiplier}
                               </span>
                             )}
@@ -255,14 +255,14 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                                   navigator.clipboard.writeText(p.paymentLink!);
                                   alert('Copiado: ' + p.paymentLink);
                                 }}
-                                className="text-blue-600 hover:bg-blue-50 flex items-center gap-1 bg-blue-50/50 px-2 py-0.5 rounded text-xs transition-colors"
+                                className="text-primary-600 hover:bg-primary-100 flex items-center gap-1 bg-primary-50 px-2 py-0.5 rounded text-xs transition-colors"
                               >
                                 <LinkIcon className="w-3 h-3" />
                                 Copiar pago
                               </button>
                             )}
                             {participantExpenses.length > 0 && (
-                              <span className="bg-slate-100 text-slate-500 px-2 py-0.5 rounded text-xs">
+                              <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs">
                                 {participantExpenses.length} gasto{participantExpenses.length !== 1 ? 's' : ''}
                               </span>
                             )}
@@ -270,23 +270,23 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-black text-lg text-green-600">
+                        <p className="font-black text-lg text-sage-600">
                           {formatMoney(totalPaid, currency)}
                         </p>
                         <div className="flex gap-1 justify-end">
                           <button
                             onClick={() => startEdit(p)}
-                            className="p-1.5 hover:bg-slate-100 rounded-lg transition-all"
+                            className="p-1.5 hover:bg-gray-100 rounded-lg transition-all"
                             title="Editar"
                           >
-                            <Pencil className="w-4 h-4 text-slate-500" />
+                            <Pencil className="w-4 h-4 text-gray-400" />
                           </button>
                           <button
                             onClick={() => handleRemove(p.id)}
-                            className="p-1.5 hover:bg-red-50 rounded-lg transition-all"
+                            className="p-1.5 hover:bg-coral-100 rounded-lg transition-all"
                             title="Eliminar"
                           >
-                            <Trash2 className="w-4 h-4 text-red-500" />
+                            <Trash2 className="w-4 h-4 text-coral-500" />
                           </button>
                         </div>
                       </div>

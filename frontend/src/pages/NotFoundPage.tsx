@@ -6,10 +6,10 @@ export default function NotFoundPage() {
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="text-center space-y-4">
         <div className="text-6xl">🔍</div>
-        <h1 className="text-2xl font-bold text-slate-900">
+        <h1 className="text-2xl font-bold text-gray-800">
           Página no encontrada
         </h1>
-        <p className="text-slate-500">
+        <p className="text-gray-500">
           La página que buscas no existe
         </p>
         <Link to="/" className="btn-primary inline-flex items-center gap-2">
