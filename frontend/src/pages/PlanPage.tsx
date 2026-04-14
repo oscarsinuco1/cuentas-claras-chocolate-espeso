@@ -164,14 +164,14 @@ ${window.location.href}
   const currency = plan.currency || 'COP';
 
   return (
-    <div className="min-h-screen pb-24">
+    <div className="min-h-screen pb-16">
       {/* Header */}
       <header className="sticky top-0 z-10 glass-dark shadow-2xl">
-        <div className="max-w-lg mx-auto px-4 py-4">
+        <div className="max-w-lg mx-auto px-3 py-2.5">
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
-              <h1 className="font-black text-xl text-white truncate drop-shadow-lg">{plan.name}</h1>
-              <div className="flex items-center gap-2 text-sm">
+              <h1 className="font-black text-lg text-white truncate drop-shadow-lg">{plan.name}</h1>
+              <div className="flex items-center gap-1.5 text-xs">
                 <span className="font-mono font-bold text-white/90 bg-white/10 px-2 py-0.5 rounded">{code}</span>
                 <span className="text-xs bg-yellow-400 text-yellow-900 px-2 py-0.5 rounded-full font-bold">{currency}</span>
                 <button onClick={handleCopy} className="p-1.5 hover:bg-white/20 rounded-lg transition-colors">
@@ -197,7 +197,7 @@ ${window.location.href}
       </header>
 
       {/* Content */}
-      <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
+      <main className="max-w-lg mx-auto px-3 py-4 space-y-4">
         {/* Quick Add Form */}
         <div className="animate-slide-up">
           <QuickExpenseForm planCode={code!} participants={participants} currency={currency} />
@@ -205,12 +205,12 @@ ${window.location.href}
 
         {/* Summary Card - Simple */}
         <div className="card-gradient animate-slide-up stagger-1">
-          <div className="text-center py-2">
-            <p className="text-white/80 text-sm font-medium mb-1">Total gastos</p>
-            <p className="text-5xl font-black text-white drop-shadow-lg">
+          <div className="text-center py-1">
+            <p className="text-white/80 text-xs font-medium">Total gastos</p>
+            <p className="text-3xl font-black text-white drop-shadow-lg">
               {formatMoney(totalExpenses, currency)}
             </p>
-            <p className="text-white/70 mt-2 text-lg">
+            <p className="text-white/70 text-sm">
               {participants.length} persona{participants.length !== 1 ? 's' : ''}
             </p>
           </div>
@@ -228,13 +228,13 @@ ${window.location.href}
       </main>
 
       {/* Bottom Actions */}
-      <div className="fixed bottom-0 left-0 right-0 glass-dark p-4 shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 glass-dark p-3 shadow-2xl">
         <div className="max-w-lg mx-auto">
           <button
             onClick={() => setShowHistory(true)}
-            className="w-full py-3 bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all"
+            className="w-full py-2.5 bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all text-sm"
           >
-            <History className="w-5 h-5" />
+            <History className="w-4 h-4" />
             Ver Historial
           </button>
         </div>

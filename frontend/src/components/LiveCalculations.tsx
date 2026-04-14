@@ -111,32 +111,32 @@ export default function LiveCalculations({ participants, expenses, currency }: P
   // No transfers needed
   if (transfers.length === 0) {
     return (
-      <div className="card text-center py-8">
-        <PartyPopper className="w-16 h-16 mx-auto mb-3 text-green-500" />
-        <p className="text-2xl font-bold text-slate-800">Todos a paz y salvo!</p>
-        <p className="text-slate-500 mt-1">No hay transferencias pendientes</p>
+      <div className="card text-center py-4">
+        <PartyPopper className="w-12 h-12 mx-auto mb-2 text-green-500" />
+        <p className="text-xl font-bold text-slate-800">Todos a paz y salvo!</p>
+        <p className="text-slate-500 text-sm">No hay transferencias pendientes</p>
       </div>
     );
   }
 
   return (
     <div className="card">
-      <h3 className="font-bold text-lg mb-4 text-slate-800">
+      <h3 className="font-bold text-base mb-3 text-slate-800">
         💸 Quien paga a quien
       </h3>
-      <div className="space-y-3">
+      <div className="space-y-2">
         {transfers.map((t, i) => (
           <div 
             key={i} 
-            className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200"
+            className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200"
           >
-            <div className="flex items-center gap-2 flex-1 flex-wrap">
+            <div className="flex items-center gap-1.5 flex-1 flex-wrap text-sm">
               <span className="font-bold text-slate-800">{t.fromName}</span>
-              <ArrowRight className="w-5 h-5 text-amber-500" />
+              <ArrowRight className="w-4 h-4 text-amber-500" />
               <span className="font-bold text-slate-800">{t.toName}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="font-black text-xl text-amber-700">
+            <div className="flex items-center gap-1.5">
+              <span className="font-black text-lg text-amber-700">
                 {formatMoney(t.amount, currency)}
               </span>
               {t.paymentLink && (

@@ -131,12 +131,12 @@ export default function ParticipantList({ planCode, participants, expenses, curr
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full flex items-center justify-between"
       >
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center shadow-lg">
-            <Users className="w-5 h-5 text-white" />
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center shadow-md">
+            <Users className="w-4 h-4 text-white" />
           </div>
           <div className="text-left">
-            <span className="font-bold text-lg text-slate-800">Participantes</span>
+            <span className="font-bold text-base text-slate-800">Participantes</span>
             <p className="text-xs text-slate-500">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
           </div>
         </div>
@@ -150,7 +150,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
       </button>
 
       {isExpanded && (
-        <div className="mt-4 space-y-4">
+        <div className="mt-3 space-y-2">
           {/* Participant list */}
           {participants.map((p, index) => {
             const participantExpenses = expensesByParticipant.get(p.id) || [];
@@ -167,10 +167,10 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                     : 'border-slate-100 bg-gradient-to-r from-slate-50 to-white'
                 )}
               >
-                <div className="p-4">
+                <div className="p-3">
                   {isEditing ? (
                     /* EDIT MODE - all fields */
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       <input
                         type="text"
                         value={editForm.name}
@@ -237,12 +237,12 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                   ) : (
                     /* VIEW MODE */
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${avatarColors[index % avatarColors.length]} flex items-center justify-center text-white text-xl font-bold shadow-md`}>
+                      <div className="flex items-center gap-2">
+                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${avatarColors[index % avatarColors.length]} flex items-center justify-center text-white text-lg font-bold shadow-md`}>
                           {p.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <p className="font-bold text-slate-800 text-lg">{p.name}</p>
+                          <p className="font-bold text-slate-800">{p.name}</p>
                           <div className="flex items-center gap-2 text-xs flex-wrap">
                             {p.multiplier > 1 && (
                               <span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">
@@ -270,10 +270,10 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-black text-xl text-green-600">
+                        <p className="font-black text-lg text-green-600">
                           {formatMoney(totalPaid, currency)}
                         </p>
-                        <div className="flex gap-1 mt-1 justify-end">
+                        <div className="flex gap-1 justify-end">
                           <button
                             onClick={() => startEdit(p)}
                             className="p-2 hover:bg-purple-100 rounded-lg transition-all"

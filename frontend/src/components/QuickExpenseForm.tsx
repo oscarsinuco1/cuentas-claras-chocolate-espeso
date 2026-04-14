@@ -80,15 +80,15 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
   };
 
   return (
-    <form onSubmit={handleSubmit} className="card space-y-4">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
-          <Zap className="w-5 h-5 text-white" />
+    <form onSubmit={handleSubmit} className="card space-y-3">
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 shrink-0 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-md">
+          <Zap className="w-4 h-4 text-white" />
         </div>
-        <span className="font-bold text-lg text-slate-800">Agregar gasto</span>
+        <span className="font-bold text-base text-slate-800">Agregar gasto</span>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {/* Name Input with autocomplete */}
         <div className="relative">
           <input
@@ -123,7 +123,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
         {/* Amount + Multiplier + Submit row */}
         <div className="flex gap-2">
           <div className="relative flex-1">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
             <input
               ref={amountRef}
               type="text"
@@ -131,32 +131,32 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
               value={amount}
               onChange={(e) => setAmount(formatAmount(e.target.value))}
               placeholder="0"
-              className="input pl-10 text-xl font-bold"
+              className="input pl-8 text-lg font-bold"
               autoComplete="off"
               disabled={isSubmitting}
             />
           </div>
-          <div className="flex items-center gap-1 bg-purple-50 rounded-xl px-2">
-            <span className="text-purple-600 font-bold text-sm">x</span>
+          <div className="flex items-center gap-1 bg-purple-50 rounded-lg px-2">
+            <span className="text-purple-600 font-bold text-xs">x</span>
             <input
               type="text"
               inputMode="numeric"
               value={multiplier}
               onChange={(e) => setMultiplier(e.target.value.replace(/\D/g, '').slice(0, 2) || '')}
               onBlur={() => !multiplier && setMultiplier('1')}
-              className="w-8 bg-transparent text-center font-bold text-purple-700 text-lg focus:outline-none"
+              className="w-7 bg-transparent text-center font-bold text-purple-700 focus:outline-none"
               disabled={isSubmitting}
             />
           </div>
           <button
             type="submit"
             disabled={isSubmitting || !name.trim() || !amount}
-            className="btn-success px-6"
+            className="btn-success px-4"
           >
             {isSubmitting ? (
               <span className="animate-spin">+</span>
             ) : (
-              <Plus className="w-6 h-6" />
+              <Plus className="w-5 h-5" />
             )}
           </button>
         </div>
