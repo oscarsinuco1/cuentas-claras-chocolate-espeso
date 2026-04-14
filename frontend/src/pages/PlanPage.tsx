@@ -100,12 +100,24 @@ export default function PlanPage() {
     };
   }, [code, addParticipant, updateParticipant, removeParticipant, addExpense, updateExpense, removeExpense, queryClient]);
 
+  const getShareMessage = () => {
+    if (!plan || !code) return '';
+    return `🍫 ¡Cuentas claras, chocolate espeso! 🍫
+
+"${plan.name}"
+
+💸 Entra al plan y agrega tus gastos:
+${window.location.href}
+
+📝 Código: ${code}`;
+  };
+
   const handleCopy = async () => {
-    if (!code) return;
+    if (!code || !plan) return;
     try {
-      await navigator.clipboard.writeText(code);
+      await navigator.clipboard.writeText(getShareMessage());
       setCopied(true);
-      toast.success('Código copiado');
+      toast.success('¡Enlace copiado! 🎉');
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error('No se pudo copiar');
@@ -117,7 +129,7 @@ export default function PlanPage() {
     try {
       await navigator.share({
         title: `🍫 ${plan.name}`,
-        text: `¡Únete a dividir gastos conmigo! 💸\n\n"${plan.name}"\nCódigo: ${code}\n\nEntra y agrega tus gastos 👇`,
+        text: getShareMessage(),
         url: window.location.href,
       });
     } catch {
