@@ -34,7 +34,7 @@ RUN npm ci --omit=dev
 
 # Copy built assets and server
 COPY --from=builder /app/dist ./dist
-COPY server.js ./
+COPY --from=builder /app/server.js ./
 
 # Add non-root user
 RUN addgroup -g 1001 -S nodejs && \
