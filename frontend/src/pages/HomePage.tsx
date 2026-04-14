@@ -110,9 +110,9 @@ export default function HomePage() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 animate-slide-up stagger-2">
-          <div className="flex-1 h-px" style={{ backgroundColor: '#E4E6EB' }} />
+          <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(19, 236, 109, 0.3)' }} />
           <span className="text-sm text-text-muted">o</span>
-          <div className="flex-1 h-px" style={{ backgroundColor: '#E4E6EB' }} />
+          <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(19, 236, 109, 0.3)' }} />
         </div>
 
         {/* Create Plan */}

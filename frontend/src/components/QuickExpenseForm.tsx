@@ -104,7 +104,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
             disabled={isSubmitting}
           />
           {showSuggestions && suggestions.length > 0 && (
-            <ul className="absolute z-20 w-full mt-1 rounded-lg shadow-lg overflow-hidden" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E4E6EB' }}>
+            <ul className="absolute z-20 w-full mt-1 rounded-lg shadow-lg overflow-hidden" style={{ backgroundColor: '#141414', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.4)' }}>
               {suggestions.map((s) => (
                 <li key={s}>
                   <button
@@ -112,7 +112,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
                     onClick={() => selectSuggestion(s)}
                     className="w-full px-4 py-2 text-left text-text-primary transition-colors"
                     style={{ backgroundColor: 'transparent' }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#F0F2F5'}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(19, 236, 109, 0.1)'}
                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
                     {s}
@@ -139,7 +139,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
               disabled={isSubmitting}
             />
           </div>
-          <div className="flex items-center gap-1 rounded-lg px-2" style={{ backgroundColor: '#F0F2F5' }}>
+          <div className="flex items-center gap-1 rounded-lg px-2" style={{ backgroundColor: 'rgba(19, 236, 109, 0.1)' }}>
             <span className="text-text-muted text-xs">x</span>
             <input
               type="text"

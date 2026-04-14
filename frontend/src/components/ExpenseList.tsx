@@ -93,8 +93,8 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
             key={expense.id}
             className="p-4 rounded-2xl border-2 transition-all"
             style={{ 
-              borderColor: editingId === expense.id ? '#13ec6d' : '#E4E6EB',
-              backgroundColor: editingId === expense.id ? 'rgba(19, 236, 109, 0.1)' : '#FFFFFF'
+              borderColor: editingId === expense.id ? '#13ec6d' : 'transparent',
+              backgroundColor: editingId === expense.id ? 'rgba(19, 236, 109, 0.1)' : '#141414'
             }}
           >
             <div className="flex items-center justify-between">
@@ -126,7 +126,7 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
                   <button onClick={() => handleUpdate(expense.id)} className="p-2 text-white rounded-xl" style={{ backgroundColor: '#13ec6d' }}>
                     <Check className="w-5 h-5" />
                   </button>
-                  <button onClick={() => setEditingId(null)} className="p-2 rounded-xl" style={{ backgroundColor: '#F0F2F5' }}>
+                  <button onClick={() => setEditingId(null)} className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(19, 236, 109, 0.1)' }}>
                     <X className="w-5 h-5 text-text-secondary" />
                   </button>
                 </div>

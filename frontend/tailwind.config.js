@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Stitch Light Mode palette - customColor: #13ec6d
+        // Dark Mode palette - #13ec6d green accent
         light: {
-          bg: '#FFFFFF',
-          card: '#FFFFFF',
-          hover: '#F5F7FA',
-          border: '#E4E6EB',
-          elevated: '#FFFFFF',
+          bg: '#0A0A0A',
+          card: '#141414',
+          hover: 'rgba(19, 236, 109, 0.1)',
+          border: 'transparent',
+          elevated: '#1A1A1A',
         },
         // Primary green from Stitch
         primary: {
@@ -25,11 +25,11 @@ export default {
           800: '#087334',
           900: '#054D24',
         },
-        // Text colors (dark for light mode)
+        // Text colors (light for dark mode)
         text: {
-          primary: '#1F2937',
-          secondary: '#4B5563',
-          muted: '#9CA3AF',
+          primary: '#FFFFFF',
+          secondary: '#A3A3A3',
+          muted: '#737373',
         },
         // Success (same as primary for consistency)
         success: {
