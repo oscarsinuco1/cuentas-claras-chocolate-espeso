@@ -17,11 +17,12 @@ import { setupSocketHandlers } from './services/socket.service.js';
 
 const PORT = parseInt(process.env['PORT'] ?? '3000', 10);
 const CORS_ORIGIN = process.env['CORS_ORIGIN'] ?? 'http://localhost:5173';
+const IS_PRODUCTION = process.env['NODE_ENV'] === 'production';
 
 async function buildApp() {
   const fastify = Fastify({
     logger: {
-      level: process.env['NODE_ENV'] === 'production' ? 'info' : 'debug',
+      level: IS_PRODUCTION ? 'info' : 'debug',
     },
   });
 
@@ -36,20 +37,22 @@ async function buildApp() {
     timeWindow: '1 minute',
   });
 
-  // Swagger Documentation
-  await fastify.register(swagger, {
-    openapi: {
-      info: {
-        title: 'Cuentas Claras API',
-        description: 'API para división de gastos en tiempo real',
-        version: '1.0.0',
+  // Swagger Documentation - Only in development
+  if (!IS_PRODUCTION) {
+    await fastify.register(swagger, {
+      openapi: {
+        info: {
+          title: 'Cuentas Claras API',
+          description: 'API para división de gastos en tiempo real',
+          version: '1.0.0',
+        },
+        servers: [{ url: `http://localhost:${PORT}` }],
       },
-      servers: [{ url: `http://localhost:${PORT}` }],
-    },
-  });
-  await fastify.register(swaggerUi, {
-    routePrefix: '/docs',
-  });
+    });
+    await fastify.register(swaggerUi, {
+      routePrefix: '/docs',
+    });
+  }
 
   // Health check
   fastify.get('/health', async () => ({ status: 'ok', timestamp: new Date().toISOString() }));

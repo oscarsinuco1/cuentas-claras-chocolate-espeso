@@ -3,15 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/chocolate.svg" />
+    <link rel="apple-touch-icon" href="/chocolate.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Divide gastos de forma rápida y sencilla - Como Kahoot pero para cuentas" />
-    <meta name="theme-color" content="#2563eb" />
+    
+    <!-- SEO Primary Meta Tags -->
+    <title>Cuentas Claras - Divide Gastos Fácil | Compartir Cuentas en Grupo</title>
+    <meta name="title" content="Cuentas Claras - Divide Gastos Fácil | Compartir Cuentas en Grupo" />
+    <meta name="description" content="Cuentas Claras es la app gratuita para dividir gastos entre amigos, compañeros de viaje o roommates. Sin registro, en tiempo real. ¡Calcula quién debe a quién al instante!" />
+    <meta name="keywords" content="dividir gastos, split expenses, compartir cuenta, dividir cuenta restaurante, calculadora gastos grupo, gastos compartidos, roommates, viajes grupo, cuentas claras, splitwise alternativa, quien debe a quien" />
+    <meta name="author" content="Cuentas Claras" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <meta name="revisit-after" content="7 days" />
+    <link rel="canonical" href="https://cuentas-claras.app" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#18191A" />
+    <meta name="msapplication-TileColor" content="#18191A" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cuentas-claras.app/" />
+    <meta property="og:title" content="Cuentas Claras - Divide Gastos Fácil entre Amigos" />
+    <meta property="og:description" content="Divide gastos de forma rápida y sencilla. Sin registro, comparte un código y todos pueden agregar gastos en tiempo real. ¡Calcula quién debe a quién al instante!" />
+    <meta property="og:image" content="https://cuentas-claras.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Cuentas Claras" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://cuentas-claras.app/" />
+    <meta property="twitter:title" content="Cuentas Claras - Divide Gastos Fácil entre Amigos" />
+    <meta property="twitter:description" content="Divide gastos de forma rápida y sencilla. Sin registro, comparte un código y todos pueden agregar gastos en tiempo real." />
+    <meta property="twitter:image" content="https://cuentas-claras.app/og-image.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <title>Cuentas Claras 🍫</title>
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Cuentas Claras",
+      "url": "https://cuentas-claras.app",
+      "description": "Aplicación gratuita para dividir gastos entre amigos, compañeros de viaje o roommates. Sin registro, en tiempo real.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Divide gastos en grupo",
+        "Sin registro requerido",
+        "Sincronización en tiempo real",
+        "Calcula quién debe a quién",
+        "Múltiples monedas"
+      ],
+      "inLanguage": "es",
+      "isAccessibleForFree": true
+    }
+    </script>
   </head>
   <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: sans-serif;">
+        <h1>Cuentas Claras</h1>
+        <p>Para usar Cuentas Claras necesitas habilitar JavaScript en tu navegador.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

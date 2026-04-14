@@ -1,0 +1,12 @@
+# Cuentas Claras - Robots.txt
+# https://cuentas-claras.app
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://cuentas-claras.app/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
