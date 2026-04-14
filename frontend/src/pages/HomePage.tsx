@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Plus, Users, Sparkles } from 'lucide-react';
+import { ArrowRight, Plus, Users } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { planApi } from '@/services/api';
 import { CURRENCIES, getPreferredCurrency, setPreferredCurrency } from '@/utils/currency';
@@ -63,24 +63,21 @@ export default function HomePage() {
       <div className="w-full max-w-md space-y-6">
         {/* Logo & Title */}
         <div className="text-center space-y-3 animate-bounce-in">
-          <div className="text-7xl mb-4 animate-float">🍫</div>
-          <h1 className="text-4xl font-black text-white drop-shadow-lg">
+          <h1 className="text-3xl font-bold text-white">
             Cuentas Claras
           </h1>
-          <p className="text-xl text-white/80 font-medium flex items-center justify-center gap-2">
-            <Sparkles className="w-5 h-5" />
-            Chocolate Espeso
-            <Sparkles className="w-5 h-5" />
+          <p className="text-lg text-slate-400 font-medium">
+            Divide gastos de forma simple
           </p>
         </div>
 
         {/* Join Plan */}
         <div className="card animate-slide-up stagger-1">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg">
+            <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center">
               <Users className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-xl font-bold text-slate-800">Unirse a un plan</h2>
+            <h2 className="text-lg font-semibold text-slate-800">Unirse a un plan</h2>
           </div>
           <form onSubmit={handleJoin} className="flex gap-3">
             <input
@@ -98,9 +95,9 @@ export default function HomePage() {
               className="btn-kahoot px-6"
             >
               {isJoining ? (
-                <span className="animate-spin">⏳</span>
+                <span className="animate-spin">...</span>
               ) : (
-                <ArrowRight className="w-6 h-6" />
+                <ArrowRight className="w-5 h-5" />
               )}
             </button>
           </form>
@@ -108,27 +105,27 @@ export default function HomePage() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 animate-slide-up stagger-2">
-          <div className="flex-1 h-1 bg-white/30 rounded-full" />
-          <span className="text-lg font-bold text-white/80">o</span>
-          <div className="flex-1 h-1 bg-white/30 rounded-full" />
+          <div className="flex-1 h-px bg-slate-600" />
+          <span className="text-sm text-slate-400">o</span>
+          <div className="flex-1 h-px bg-slate-600" />
         </div>
 
         {/* Create Plan */}
         <div className="card animate-slide-up stagger-3">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center shadow-lg">
+            <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center">
               <Plus className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-xl font-bold text-slate-800">Crear nuevo plan</h2>
+            <h2 className="text-lg font-semibold text-slate-800">Crear nuevo plan</h2>
           </div>
           <form onSubmit={handleCreate} className="space-y-4">
             <input
               type="text"
               value={planName}
               onChange={(e) => setPlanName(e.target.value)}
-              placeholder="Ej: Paseo a Melgar 🏖️"
+              placeholder="Ej: Viaje a la playa"
               maxLength={100}
-              className="input text-lg"
+              className="input"
               autoComplete="off"
             />
             <select
@@ -145,15 +142,15 @@ export default function HomePage() {
             <button
               type="submit"
               disabled={isCreating || !planName.trim()}
-              className="btn-success w-full text-lg"
+              className="btn-success w-full"
             >
               {isCreating ? (
                 <span className="flex items-center justify-center gap-2">
-                  <span className="animate-spin">🍫</span> Creando...
+                  Creando...
                 </span>
               ) : (
                 <span className="flex items-center justify-center gap-2">
-                  <Sparkles className="w-5 h-5" /> Crear Plan
+                  Crear Plan
                 </span>
               )}
             </button>
@@ -161,8 +158,8 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-sm text-white/60 font-medium animate-slide-up stagger-4">
-          Divide gastos facil y rapido ✨
+        <p className="text-center text-sm text-slate-500 animate-slide-up stagger-4">
+          Divide gastos facil y rapido
         </p>
       </div>
     </div>

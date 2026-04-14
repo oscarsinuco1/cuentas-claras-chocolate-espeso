@@ -155,7 +155,7 @@ ${window.location.href}
   if (isLoading || !plan) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-6xl animate-float">🍫</div>
+        <div className="text-xl text-slate-400">Cargando...</div>
       </div>
     );
   }
@@ -172,8 +172,8 @@ ${window.location.href}
             <div className="flex-1 min-w-0">
               <h1 className="font-black text-lg text-white truncate drop-shadow-lg">{plan.name}</h1>
               <div className="flex items-center gap-1.5 text-xs">
-                <span className="font-mono font-bold text-white/90 bg-white/10 px-2 py-0.5 rounded">{code}</span>
-                <span className="text-xs bg-yellow-400 text-yellow-900 px-2 py-0.5 rounded-full font-bold">{currency}</span>
+                <span className="font-mono text-white/90 bg-white/10 px-2 py-0.5 rounded">{code}</span>
+                <span className="text-xs bg-slate-600 text-slate-200 px-2 py-0.5 rounded font-medium">{currency}</span>
                 <button onClick={handleCopy} className="p-1.5 hover:bg-white/20 rounded-lg transition-colors">
                   {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4 text-white/80" />}
                 </button>
@@ -181,14 +181,14 @@ ${window.location.href}
             </div>
             <div className="flex items-center gap-3">
               {isConnected ? (
-                <div className="flex items-center gap-1 bg-green-500/20 px-2 py-1 rounded-full">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-xs font-bold text-green-300">VIVO</span>
+                <div className="flex items-center gap-1 bg-emerald-600/30 px-2 py-1 rounded">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                  <span className="text-xs font-medium text-emerald-300">En vivo</span>
                 </div>
               ) : (
                 <WifiOff className="w-4 h-4 text-white/50" />
               )}
-              <button onClick={handleShare} className="bg-white/20 hover:bg-white/30 p-2.5 rounded-xl transition-all">
+              <button onClick={handleShare} className="bg-white/10 hover:bg-white/20 p-2 rounded-lg transition-all">
                 <Share2 className="w-5 h-5 text-white" />
               </button>
             </div>

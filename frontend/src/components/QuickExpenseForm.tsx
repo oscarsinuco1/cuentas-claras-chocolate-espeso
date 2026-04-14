@@ -82,10 +82,10 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
   return (
     <form onSubmit={handleSubmit} className="card space-y-3">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 shrink-0 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-md">
+        <div className="w-8 h-8 shrink-0 rounded-lg bg-slate-700 flex items-center justify-center">
           <Zap className="w-4 h-4 text-white" />
         </div>
-        <span className="font-bold text-base text-slate-800">Agregar gasto</span>
+        <span className="font-semibold text-slate-800">Agregar participante</span>
       </div>
 
       <div className="space-y-2">
@@ -104,13 +104,13 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
             disabled={isSubmitting}
           />
           {showSuggestions && suggestions.length > 0 && (
-            <ul className="absolute z-20 w-full mt-2 bg-white border-2 border-purple-200 rounded-2xl shadow-xl overflow-hidden">
+            <ul className="absolute z-20 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden">
               {suggestions.map((s) => (
                 <li key={s}>
                   <button
                     type="button"
                     onClick={() => selectSuggestion(s)}
-                    className="w-full px-4 py-3 text-left hover:bg-purple-50 transition-colors font-medium"
+                    className="w-full px-4 py-2 text-left hover:bg-slate-50 transition-colors"
                   >
                     {s}
                   </button>
@@ -136,15 +136,15 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
               disabled={isSubmitting}
             />
           </div>
-          <div className="flex items-center gap-1 bg-purple-50 rounded-lg px-2">
-            <span className="text-purple-600 font-bold text-xs">x</span>
+          <div className="flex items-center gap-1 bg-slate-100 rounded-lg px-2">
+            <span className="text-slate-500 text-xs">x</span>
             <input
               type="text"
               inputMode="numeric"
               value={multiplier}
               onChange={(e) => setMultiplier(e.target.value.replace(/\D/g, '').slice(0, 2) || '')}
               onBlur={() => !multiplier && setMultiplier('1')}
-              className="w-7 bg-transparent text-center font-bold text-purple-700 focus:outline-none"
+              className="w-7 bg-transparent text-center font-medium text-slate-700 focus:outline-none"
               disabled={isSubmitting}
             />
           </div>

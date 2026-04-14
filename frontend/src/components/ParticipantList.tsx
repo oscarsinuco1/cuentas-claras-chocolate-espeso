@@ -8,12 +8,12 @@ import clsx from 'clsx';
 
 // Color palette for avatars
 const avatarColors = [
-  'from-pink-500 to-rose-500',
-  'from-purple-500 to-indigo-500',
-  'from-blue-500 to-cyan-500',
-  'from-green-500 to-emerald-500',
-  'from-yellow-500 to-orange-500',
-  'from-red-500 to-pink-500',
+  'from-slate-500 to-slate-600',
+  'from-blue-500 to-blue-600',
+  'from-emerald-500 to-emerald-600',
+  'from-amber-500 to-amber-600',
+  'from-rose-500 to-rose-600',
+  'from-violet-500 to-violet-600',
 ];
 
 interface Props {
@@ -132,17 +132,17 @@ export default function ParticipantList({ planCode, participants, expenses, curr
         className="w-full flex items-center justify-between"
       >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center shadow-md">
+          <div className="w-8 h-8 rounded-lg bg-slate-700 flex items-center justify-center">
             <Users className="w-4 h-4 text-white" />
           </div>
           <div className="text-left">
-            <span className="font-bold text-base text-slate-800">Participantes</span>
+            <span className="font-semibold text-slate-800">Participantes</span>
             <p className="text-xs text-slate-500">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
           </div>
         </div>
-        <div className={`p-2 rounded-xl transition-all ${isExpanded ? 'bg-purple-100' : 'bg-slate-100'}`}>
+        <div className={`p-2 rounded-lg transition-all ${isExpanded ? 'bg-slate-100' : 'bg-slate-50'}`}>
           {isExpanded ? (
-            <ChevronUp className="w-5 h-5 text-purple-500" />
+            <ChevronUp className="w-5 h-5 text-slate-600" />
           ) : (
             <ChevronDown className="w-5 h-5 text-slate-400" />
           )}
@@ -161,10 +161,10 @@ export default function ParticipantList({ planCode, participants, expenses, curr
               <div
                 key={p.id}
                 className={clsx(
-                  'rounded-2xl border-2 transition-all overflow-hidden',
+                  'rounded-lg border transition-all overflow-hidden',
                   isEditing 
-                    ? 'border-purple-300 bg-purple-50' 
-                    : 'border-slate-100 bg-gradient-to-r from-slate-50 to-white'
+                    ? 'border-slate-300 bg-slate-50' 
+                    : 'border-slate-100 bg-white'
                 )}
               >
                 <div className="p-3">
@@ -245,7 +245,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                           <p className="font-bold text-slate-800">{p.name}</p>
                           <div className="flex items-center gap-2 text-xs flex-wrap">
                             {p.multiplier > 1 && (
-                              <span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">
+                          <span className="bg-slate-200 text-slate-600 px-2 py-0.5 rounded text-xs">
                                 x{p.multiplier}
                               </span>
                             )}
@@ -255,14 +255,14 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                                   navigator.clipboard.writeText(p.paymentLink!);
                                   alert('Copiado: ' + p.paymentLink);
                                 }}
-                                className="text-blue-600 hover:bg-blue-100 flex items-center gap-1 bg-blue-50 px-2 py-0.5 rounded-full transition-colors"
+                                className="text-blue-600 hover:bg-blue-50 flex items-center gap-1 bg-blue-50/50 px-2 py-0.5 rounded text-xs transition-colors"
                               >
                                 <LinkIcon className="w-3 h-3" />
                                 Copiar pago
                               </button>
                             )}
                             {participantExpenses.length > 0 && (
-                              <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">
+                              <span className="bg-slate-100 text-slate-500 px-2 py-0.5 rounded text-xs">
                                 {participantExpenses.length} gasto{participantExpenses.length !== 1 ? 's' : ''}
                               </span>
                             )}
@@ -276,14 +276,14 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                         <div className="flex gap-1 justify-end">
                           <button
                             onClick={() => startEdit(p)}
-                            className="p-2 hover:bg-purple-100 rounded-lg transition-all"
+                            className="p-1.5 hover:bg-slate-100 rounded-lg transition-all"
                             title="Editar"
                           >
-                            <Pencil className="w-4 h-4 text-purple-500" />
+                            <Pencil className="w-4 h-4 text-slate-500" />
                           </button>
                           <button
                             onClick={() => handleRemove(p.id)}
-                            className="p-2 hover:bg-red-100 rounded-lg transition-all"
+                            className="p-1.5 hover:bg-red-50 rounded-lg transition-all"
                             title="Eliminar"
                           >
                             <Trash2 className="w-4 h-4 text-red-500" />

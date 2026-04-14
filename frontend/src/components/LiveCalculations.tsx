@@ -112,8 +112,8 @@ export default function LiveCalculations({ participants, expenses, currency }: P
   if (transfers.length === 0) {
     return (
       <div className="card text-center py-4">
-        <PartyPopper className="w-12 h-12 mx-auto mb-2 text-green-500" />
-        <p className="text-xl font-bold text-slate-800">Todos a paz y salvo!</p>
+        <PartyPopper className="w-10 h-10 mx-auto mb-2 text-emerald-500" />
+        <p className="text-lg font-semibold text-slate-800">Todos a paz y salvo</p>
         <p className="text-slate-500 text-sm">No hay transferencias pendientes</p>
       </div>
     );
@@ -121,22 +121,22 @@ export default function LiveCalculations({ participants, expenses, currency }: P
 
   return (
     <div className="card">
-      <h3 className="font-bold text-base mb-3 text-slate-800">
-        💸 Quien paga a quien
+      <h3 className="font-semibold text-base mb-3 text-slate-800">
+        Transferencias pendientes
       </h3>
       <div className="space-y-2">
         {transfers.map((t, i) => (
           <div 
             key={i} 
-            className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200"
+            className="flex items-center justify-between p-3 rounded-lg bg-slate-50 border border-slate-100"
           >
             <div className="flex items-center gap-1.5 flex-1 flex-wrap text-sm">
-              <span className="font-bold text-slate-800">{t.fromName}</span>
-              <ArrowRight className="w-4 h-4 text-amber-500" />
-              <span className="font-bold text-slate-800">{t.toName}</span>
+              <span className="font-medium text-slate-700">{t.fromName}</span>
+              <ArrowRight className="w-4 h-4 text-slate-400" />
+              <span className="font-medium text-slate-700">{t.toName}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="font-black text-lg text-amber-700">
+              <span className="font-bold text-lg text-slate-800">
                 {formatMoney(t.amount, currency)}
               </span>
               {t.paymentLink && (
@@ -145,7 +145,7 @@ export default function LiveCalculations({ participants, expenses, currency }: P
                     navigator.clipboard.writeText(t.paymentLink!);
                     alert('Copiado: ' + t.paymentLink);
                   }}
-                  className="p-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white transition-all"
+                  className="p-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-600 transition-all"
                   title="Copiar info de pago"
                 >
                   <Copy className="w-4 h-4" />
