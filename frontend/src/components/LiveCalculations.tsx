@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ArrowRight, Copy, CheckCircle } from 'lucide-react';
+import { ArrowRightLeft, Copy, CheckCircle } from 'lucide-react';
 import type { Participant, Expense, Currency } from '@/types';
 import { formatMoney } from '@/utils/currency';
 
@@ -122,7 +122,7 @@ export default function LiveCalculations({ participants, expenses, currency }: P
   return (
     <div className="card">
       <h3 className="font-semibold text-base mb-3 text-text-primary">
-        Transferencias pendientes
+        Liquidaciones Sugeridas
       </h3>
       <div className="space-y-2">
         {transfers.map((t, i) => (
@@ -131,10 +131,13 @@ export default function LiveCalculations({ participants, expenses, currency }: P
             className="flex items-center justify-between p-3 rounded-lg"
             style={{ backgroundColor: '#2D2E2F', border: '1px solid #3E4042' }}
           >
-            <div className="flex items-center gap-1.5 flex-1 flex-wrap text-sm">
-              <span className="font-medium text-text-secondary">{t.fromName}</span>
-              <ArrowRight className="w-4 h-4 text-primary-400" />
-              <span className="font-medium text-text-secondary">{t.toName}</span>
+            <div className="flex items-center gap-2 flex-1 flex-wrap text-sm">
+              <ArrowRightLeft className="w-4 h-4 text-primary-400" />
+              <span className="text-text-secondary">
+                <span className="font-medium text-text-primary">{t.fromName}</span>
+                {' le debe a '}
+                <span className="font-medium text-text-primary">{t.toName}</span>
+              </span>
             </div>
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-lg text-text-primary">

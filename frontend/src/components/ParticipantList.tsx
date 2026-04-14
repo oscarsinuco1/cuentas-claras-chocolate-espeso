@@ -136,7 +136,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
           </div>
           <div className="text-left">
             <span className="font-semibold text-text-primary">Participantes</span>
-            <p className="text-xs text-text-secondary">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
+            <p className="text-xs text-text-secondary">{participants.length} miembro{participants.length !== 1 ? 's' : ''}</p>
           </div>
         </div>
         <div className="p-2 rounded-lg transition-all" style={{ backgroundColor: isExpanded ? '#3A3B3C' : '#2D2E2F' }}>

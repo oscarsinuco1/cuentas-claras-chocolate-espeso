@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { X, ArrowRight, Copy, Loader2 } from 'lucide-react';
+import { X, ArrowRightLeft, Copy, Loader2 } from 'lucide-react';
 import { calculateApi } from '@/services/api';
 
 interface Props {
@@ -92,7 +92,7 @@ export default function CalculationModal({ planCode, onClose }: Props) {
               {/* Transfers */}
               {data.transfers.length > 0 && (
                 <div>
-                  <h3 className="font-semibold mb-3 text-text-primary">Transferencias</h3>
+                  <h3 className="font-semibold mb-3 text-text-primary">Liquidaciones Sugeridas</h3>
                   <div className="space-y-3">
                     {data.transfers.map((t, i) => (
                       <div
@@ -102,9 +102,12 @@ export default function CalculationModal({ planCode, onClose }: Props) {
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-primary-300">{t.fromName}</span>
-                            <ArrowRight className="w-4 h-4 text-primary-400" />
-                            <span className="font-medium text-primary-300">{t.toName}</span>
+                            <ArrowRightLeft className="w-4 h-4 text-primary-400" />
+                            <span className="text-primary-300">
+                              <span className="font-medium">{t.fromName}</span>
+                              {' le debe a '}
+                              <span className="font-medium">{t.toName}</span>
+                            </span>
                           </div>
                           <span className="font-bold text-primary-300">
                             ${t.amount.toLocaleString('es-CO')}

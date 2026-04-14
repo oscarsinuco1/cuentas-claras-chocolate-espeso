@@ -85,7 +85,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
         <div className="w-8 h-8 shrink-0 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#31A24C' }}>
           <UserPlus className="w-4 h-4 text-white" />
         </div>
-        <span className="font-semibold text-text-primary">Agregar participante</span>
+        <span className="font-semibold text-text-primary">Agregar Entrada</span>
       </div>
 
       <div className="space-y-2">
@@ -98,7 +98,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
             onChange={(e) => setName(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-            placeholder="Quien pago?"
+            placeholder="Nombre del Participante"
             className="input"
             autoComplete="off"
             disabled={isSubmitting}
@@ -154,12 +154,15 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
           <button
             type="submit"
             disabled={isSubmitting || !name.trim() || !amount}
-            className="btn-success px-4"
+            className="btn-success px-3 flex items-center gap-1.5"
           >
             {isSubmitting ? (
               <span className="animate-spin">+</span>
             ) : (
-              <Plus className="w-5 h-5" />
+              <>
+                <Plus className="w-4 h-4" />
+                <span className="text-sm font-medium hidden sm:inline">Agregar</span>
+              </>
             )}
           </button>
         </div>

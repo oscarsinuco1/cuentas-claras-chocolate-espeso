@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { Copy, Share2, Check, WifiOff, History, Home, Loader2, AlertCircle } from 'lucide-react';
+import { Copy, Share2, Check, WifiOff, History, Home, Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
 import { planApi } from '@/services/api';
 import { connectSocket, disconnectSocket, joinPlan, leavePlan, onPlanUpdate, onConnected, onDisconnected } from '@/services/socket';
 import { usePlanStore } from '@/hooks/usePlanStore';
@@ -173,14 +173,19 @@ Código: ${code}`;
       <header className="sticky top-0 z-10" style={{ backgroundColor: '#242526', borderBottom: '1px solid #3E4042' }}>
         <div className="max-w-lg mx-auto px-3 py-2.5">
           <div className="flex items-center justify-between">
-            <div className="flex-1 min-w-0">
-              <h1 className="font-bold text-lg text-text-primary truncate">{plan.name}</h1>
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <button onClick={() => navigate('/')} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                <ArrowLeft className="w-5 h-5 text-text-secondary" />
+              </button>
+              <div className="min-w-0">
+                <h1 className="font-bold text-lg text-text-primary truncate">{plan.name}</h1>
               <div className="flex items-center gap-1.5 text-xs">
                 <span className="font-mono text-text-secondary px-2 py-0.5 rounded" style={{ backgroundColor: '#3A3B3C' }}>{code}</span>
                 <span className="text-xs px-2 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(35, 116, 225, 0.2)', color: '#5AAFFA' }}>{currency}</span>
                 <button onClick={handleCopy} className="p-1.5 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                   {copied ? <Check className="w-4 h-4 text-success-400" /> : <Copy className="w-4 h-4 text-text-muted" />}
                 </button>
+              </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -210,12 +215,12 @@ Código: ${code}`;
         {/* Summary Card - Simple */}
         <div className="card animate-slide-up stagger-1" style={{ backgroundColor: '#2374E1' }}>
           <div className="text-center py-1">
-            <p className="text-white/80 text-xs font-medium">Total gastos</p>
+            <p className="text-white/80 text-xs font-medium">Gastos Totales</p>
             <p className="text-3xl font-bold text-white">
               {formatMoney(totalExpenses, currency)}
             </p>
             <p className="text-white/70 text-sm">
-              {participants.length} persona{participants.length !== 1 ? 's' : ''}
+              {participants.length} miembro{participants.length !== 1 ? 's' : ''}
             </p>
           </div>
         </div>
