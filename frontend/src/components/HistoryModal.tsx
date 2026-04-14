@@ -76,7 +76,7 @@ export default function HistoryModal({ planCode, onClose }: Props) {
             <Clock className="w-5 h-5 text-text-secondary" />
             <h2 className="text-lg font-bold text-text-primary">Historial de cambios</h2>
           </div>
-          <button onClick={onClose} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }}>
+          <button onClick={onClose} className="p-2 rounded-full transition-colors" style={{ backgroundColor: 'transparent' }}>
             <X className="w-5 h-5 text-text-secondary" />
           </button>
         </div>

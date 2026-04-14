@@ -149,7 +149,7 @@ export default function LiveCalculations({ participants, expenses, currency }: P
                     navigator.clipboard.writeText(t.paymentLink!);
                     alert('Copiado: ' + t.paymentLink);
                   }}
-                  className="p-1.5 rounded-lg transition-all"
+                  className="p-1.5 rounded-full transition-all"
                   style={{ backgroundColor: 'rgba(35, 116, 225, 0.2)', color: '#5AAFFA' }}
                   title="Copiar info de pago"
                 >

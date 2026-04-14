@@ -174,7 +174,7 @@ Código: ${code}`;
         <div className="max-w-lg mx-auto px-3 py-2.5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 flex-1 min-w-0">
-              <button onClick={() => navigate('/')} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+              <button onClick={() => navigate('/')} className="p-2 rounded-full transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                 <ArrowLeft className="w-5 h-5 text-text-secondary" />
               </button>
               <div className="min-w-0">
@@ -182,7 +182,7 @@ Código: ${code}`;
               <div className="flex items-center gap-1.5 text-xs">
                 <span className="font-mono text-text-secondary px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)' }}>{code}</span>
                 <span className="text-xs px-2 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(59, 130, 246, 0.15)', color: '#059669' }}>{currency}</span>
-                <button onClick={handleCopy} className="p-1.5 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                <button onClick={handleCopy} className="p-1.5 rounded-full transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                   {copied ? <Check className="w-4 h-4 text-success-500" /> : <Copy className="w-4 h-4 text-text-muted" />}
                 </button>
               </div>
@@ -197,7 +197,7 @@ Código: ${code}`;
               ) : (
                 <WifiOff className="w-4 h-4 text-text-muted" />
               )}
-              <button onClick={handleShare} className="btn-primary p-2 rounded-xl">
+              <button onClick={handleShare} className="btn-primary p-2 rounded-full">
                 <Share2 className="w-5 h-5 text-white" />
               </button>
             </div>
@@ -241,7 +241,7 @@ Código: ${code}`;
         <div className="max-w-lg mx-auto">
           <button
             onClick={() => setShowHistory(true)}
-            className="w-full py-2.5 font-semibold rounded-xl flex items-center justify-center gap-2 transition-all text-sm text-text-primary"
+            className="w-full py-2.5 font-semibold rounded-full flex items-center justify-center gap-2 transition-all text-sm text-text-primary"
             style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)', border: 'none' }}
           >
             <History className="w-4 h-4" />

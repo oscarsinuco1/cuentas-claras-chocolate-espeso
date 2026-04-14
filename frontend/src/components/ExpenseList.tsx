@@ -123,21 +123,21 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
                       autoFocus
                     />
                   </div>
-                  <button onClick={() => handleUpdate(expense.id)} className="p-2 text-white rounded-xl" style={{ backgroundColor: '#3B82F6' }}>
+                  <button onClick={() => handleUpdate(expense.id)} className="p-2 text-white rounded-full" style={{ backgroundColor: '#3B82F6' }}>
                     <Check className="w-5 h-5" />
                   </button>
-                  <button onClick={() => setEditingId(null)} className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)' }}>
+                  <button onClick={() => setEditingId(null)} className="p-2 rounded-full" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)' }}>
                     <X className="w-5 h-5 text-text-secondary" />
                   </button>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <span className="font-black text-lg px-3 py-1 rounded-xl" style={{ backgroundColor: 'rgba(59, 130, 246, 0.15)', color: '#059669' }}>
+                  <span className="font-black text-lg px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(59, 130, 246, 0.15)', color: '#059669' }}>
                     {formatMoney(Number(expense.amount), currency)}
                   </span>
                   <button
                     onClick={() => startEdit(expense)}
-                    className="p-2 rounded-xl transition-all"
+                    className="p-2 rounded-full transition-all"
                     style={{ backgroundColor: 'transparent' }}
                     onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.15)'}
                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
@@ -146,7 +146,7 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
                   </button>
                   <button
                     onClick={() => handleDelete(expense.id)}
-                    className="p-2 rounded-xl transition-all"
+                    className="p-2 rounded-full transition-all"
                     style={{ backgroundColor: 'transparent' }}
                     onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(240, 40, 73, 0.2)'}
                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}

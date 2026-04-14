@@ -23,7 +23,7 @@ export default function CalculationModal({ planCode, onClose }: Props) {
         {/* Header */}
         <div className="sticky top-0 px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#141414', borderBottom: 'none', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
           <h2 className="text-lg font-bold text-text-primary">Cálculo de cuentas</h2>
-          <button onClick={onClose} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }}>
+          <button onClick={onClose} className="p-2 rounded-full transition-colors" style={{ backgroundColor: 'transparent' }}>
             <X className="w-5 h-5 text-text-secondary" />
           </button>
         </div>

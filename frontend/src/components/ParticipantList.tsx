@@ -213,7 +213,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                                 />
                                 <button 
                                   onClick={() => handleDeleteExpense(exp.id)}
-                                  className="p-1.5 rounded-lg transition-colors"
+                                  className="p-1.5 rounded-full transition-colors"
                                   style={{ backgroundColor: 'transparent' }}
                                   onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(240, 40, 73, 0.2)'}
                                   onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
@@ -278,7 +278,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                         <div className="flex gap-1 justify-end">
                           <button
                             onClick={() => startEdit(p)}
-                            className="p-1.5 rounded-lg transition-all"
+                            className="p-1.5 rounded-full transition-all"
                             title="Editar"
                             style={{ backgroundColor: 'transparent' }}
                             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'}
@@ -288,7 +288,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                           </button>
                           <button
                             onClick={() => handleRemove(p.id)}
-                            className="p-1.5 rounded-lg transition-all"
+                            className="p-1.5 rounded-full transition-all"
                             title="Eliminar"
                             style={{ backgroundColor: 'transparent' }}
                             onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(240, 40, 73, 0.2)'}
