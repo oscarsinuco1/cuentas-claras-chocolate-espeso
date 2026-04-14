@@ -82,7 +82,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
   return (
     <form onSubmit={handleSubmit} className="card space-y-3">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 shrink-0 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#13ec6d' }}>
+        <div className="w-8 h-8 shrink-0 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#3B82F6' }}>
           <UserPlus className="w-4 h-4 text-white" />
         </div>
         <span className="font-semibold text-text-primary">Agregar Entrada</span>
@@ -112,7 +112,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
                     onClick={() => selectSuggestion(s)}
                     className="w-full px-4 py-2 text-left text-text-primary transition-colors"
                     style={{ backgroundColor: 'transparent' }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(19, 236, 109, 0.1)'}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'}
                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
                     {s}
@@ -139,7 +139,7 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
               disabled={isSubmitting}
             />
           </div>
-          <div className="flex items-center gap-1 rounded-lg px-2" style={{ backgroundColor: 'rgba(19, 236, 109, 0.1)' }}>
+          <div className="flex items-center gap-1 rounded-lg px-2" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)' }}>
             <span className="text-text-muted text-xs">x</span>
             <input
               type="text"
@@ -170,3 +170,4 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
     </form>
   );
 }
+

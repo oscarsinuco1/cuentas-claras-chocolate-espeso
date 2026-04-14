@@ -309,3 +309,4 @@ export default function ParticipantList({ planCode, participants, expenses, curr
     </div>
   );
 }
+

@@ -4,26 +4,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Dark Mode palette - #13ec6d green accent
+        // Dark Mode palette - #3B82F6 blue accent
         light: {
           bg: '#0A0A0A',
           card: '#141414',
-          hover: 'rgba(19, 236, 109, 0.1)',
+          hover: 'rgba(59, 130, 246, 0.1)',
           border: 'transparent',
           elevated: '#1A1A1A',
         },
-        // Primary green from Stitch
+        // Primary blue
         primary: {
-          50: '#E8FDF2',
-          100: '#C5FAE0',
-          200: '#8FF5C2',
-          300: '#4DECA0',
-          400: '#13ec6d',
-          500: '#10D760',
-          600: '#0DBF54',
-          700: '#0A9944',
-          800: '#087334',
-          900: '#054D24',
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6',
+          600: '#2563EB',
+          700: '#1D4ED8',
+          800: '#1E40AF',
+          900: '#1E3A8A',
         },
         // Text colors (light for dark mode)
         text: {
@@ -33,16 +33,16 @@ export default {
         },
         // Success (same as primary for consistency)
         success: {
-          50: '#E8FDF2',
-          100: '#C5FAE0',
-          200: '#8FF5C2',
-          300: '#4DECA0',
-          400: '#13ec6d',
-          500: '#10D760',
-          600: '#0DBF54',
-          700: '#0A9944',
-          800: '#087334',
-          900: '#054D24',
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6',
+          600: '#2563EB',
+          700: '#1D4ED8',
+          800: '#1E40AF',
+          900: '#1E3A8A',
         },
         // Warning yellow
         warning: {
@@ -103,3 +103,4 @@ export default {
   },
   plugins: [],
 };
+

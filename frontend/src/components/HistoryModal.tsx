@@ -108,10 +108,10 @@ export default function HistoryModal({ planCode, onClose }: Props) {
                   key={entry.id}
                   className="flex items-start gap-3 p-3 rounded-xl transition-colors"
                   style={{ backgroundColor: 'transparent' }}
-                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(19, 236, 109, 0.1)'}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'}
                   onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  <div className="mt-0.5 p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(19, 236, 109, 0.1)' }}>
+                  <div className="mt-0.5 p-1.5 rounded-lg" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)' }}>
                     {ACTION_ICONS[entry.action] || <Clock className="w-4 h-4 text-text-muted" />}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -134,3 +134,4 @@ export default function HistoryModal({ planCode, onClose }: Props) {
     </div>
   );
 }
+

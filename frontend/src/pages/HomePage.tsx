@@ -63,7 +63,7 @@ export default function HomePage() {
       <div className="w-full max-w-md space-y-6">
         {/* Logo & Title */}
         <div className="text-center space-y-4 animate-bounce-in">
-          <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#13ec6d' }}>
+          <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#3B82F6' }}>
             <Receipt className="w-10 h-10 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-text-primary">
@@ -79,7 +79,7 @@ export default function HomePage() {
         {/* Join Plan */}
         <div className="card animate-slide-up stagger-1">
           <div className="flex items-center gap-3 mb-4">
-          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#13ec6d' }}>
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#3B82F6' }}>
               <Users className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-lg font-semibold text-text-primary">Unirse a un plan</h2>
@@ -110,15 +110,15 @@ export default function HomePage() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 animate-slide-up stagger-2">
-          <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(19, 236, 109, 0.3)' }} />
+          <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(59, 130, 246, 0.3)' }} />
           <span className="text-sm text-text-muted">o</span>
-          <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(19, 236, 109, 0.3)' }} />
+          <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(59, 130, 246, 0.3)' }} />
         </div>
 
         {/* Create Plan */}
         <div className="card animate-slide-up stagger-3">
           <div className="flex items-center gap-3 mb-4">
-          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#13ec6d' }}>
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#3B82F6' }}>
               <Plus className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-lg font-semibold text-text-primary">Crear nuevo plan</h2>
@@ -170,3 +170,4 @@ export default function HomePage() {
     </div>
   );
 }
+

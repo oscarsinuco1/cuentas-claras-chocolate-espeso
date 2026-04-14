@@ -40,3 +40,4 @@ describe('App', () => {
     expect(screen.getByPlaceholderText('Ej: Paseo a Melgar')).toBeInTheDocument();
   });
 });
+

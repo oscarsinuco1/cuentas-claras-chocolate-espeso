@@ -45,7 +45,7 @@ export default function CalculationModal({ planCode, onClose }: Props) {
           {data && (
             <>
               {/* Summary */}
-              <div className="rounded-2xl p-4 space-y-2" style={{ backgroundColor: 'rgba(19, 236, 109, 0.1)', border: '1px solid rgba(19, 236, 109, 0.3)' }}>
+              <div className="rounded-2xl p-4 space-y-2" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
                 <div className="flex justify-between">
                   <span className="text-primary-700">Total gastos</span>
                   <span className="font-bold text-primary-700">
@@ -69,9 +69,9 @@ export default function CalculationModal({ planCode, onClose }: Props) {
                 <h3 className="font-semibold mb-3 text-text-primary">Balance por persona</h3>
                 <div className="space-y-2">
                   {data.balances.map((b) => (
-                    <div key={b.participantId} className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: 'rgba(19, 236, 109, 0.08)' }}>
+                    <div key={b.participantId} className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: 'rgba(59, 130, 246, 0.08)' }}>
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: '#13ec6d' }}>
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: '#3B82F6' }}>
                           {b.name.charAt(0)}
                         </div>
                         <div>
@@ -144,3 +144,4 @@ export default function CalculationModal({ planCode, onClose }: Props) {
     </div>
   );
 }
+

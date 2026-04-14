@@ -8,14 +8,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
-  /* Dark Mode palette - #13ec6d green accent */
+  /* Dark Mode palette - #3B82F6 blue accent */
   --color-bg: #0A0A0A;
   --color-card: #141414;
-  --color-hover: rgba(19, 236, 109, 0.1);
+  --color-hover: rgba(59, 130, 246, 0.1);
   --color-border: transparent;
-  --color-primary: #13ec6d;
-  --color-primary-hover: #10D760;
-  --color-success: #13ec6d;
+  --color-primary: #3B82F6;
+  --color-primary-hover: #2563EB;
+  --color-success: #3B82F6;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
   --color-text: #FFFFFF;
@@ -52,11 +52,11 @@ input[type="number"] {
 
   .btn-primary {
     @apply btn text-white;
-    background-color: #13ec6d;
+    background-color: #3B82F6;
   }
   
   .btn-primary:hover {
-    background-color: #10D760;
+    background-color: #2563EB;
   }
   
   .btn-primary:focus {
@@ -65,21 +65,21 @@ input[type="number"] {
 
   .btn-secondary {
     @apply btn;
-    background-color: rgba(19, 236, 109, 0.15);
+    background-color: rgba(59, 130, 246, 0.15);
     color: #FFFFFF;
   }
   
   .btn-secondary:hover {
-    background-color: rgba(19, 236, 109, 0.25);
+    background-color: rgba(59, 130, 246, 0.25);
   }
 
   .btn-success {
     @apply btn text-white;
-    background-color: #13ec6d;
+    background-color: #3B82F6;
   }
   
   .btn-success:hover {
-    background-color: #10D760;
+    background-color: #2563EB;
   }
 
   .btn-danger {
@@ -96,7 +96,7 @@ input[type="number"] {
            focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
            transition-all duration-150;
     background-color: #1A1A1A;
-    border-color: rgba(19, 236, 109, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
     color: #FFFFFF;
   }
   
@@ -127,7 +127,7 @@ input[type="number"] {
 
   .card-success {
     @apply rounded-lg p-5 text-white;
-    background-color: #13ec6d;
+    background-color: #3B82F6;
   }
 
   .card-warning {
@@ -138,13 +138,13 @@ input[type="number"] {
 
   .badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
-    background-color: rgba(19, 236, 109, 0.15);
+    background-color: rgba(59, 130, 246, 0.15);
     color: #FFFFFF;
   }
   
   .badge-success {
-    background-color: rgba(19, 236, 109, 0.2);
-    color: #4DECA0;
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #60A5FA;
   }
   
   .badge-warning {
@@ -158,8 +158,8 @@ input[type="number"] {
   }
   
   .badge-primary {
-    background-color: rgba(19, 236, 109, 0.2);
-    color: #4DECA0;
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #60A5FA;
   }
 
   .glass {
@@ -205,8 +205,8 @@ input[type="number"] {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(19, 236, 109, 0.3), 0 0 15px rgba(19, 236, 109, 0.2); }
-  50% { box-shadow: 0 0 15px rgba(19, 236, 109, 0.5), 0 0 30px rgba(19, 236, 109, 0.3); }
+  0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.3), 0 0 15px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), 0 0 30px rgba(59, 130, 246, 0.3); }
 }
 
 @keyframes float {
@@ -220,11 +220,11 @@ input[type="number"] {
 }
 
 @keyframes rainbow-border {
-  0% { border-color: #13ec6d; }
-  25% { border-color: #10D760; }
+  0% { border-color: #3B82F6; }
+  25% { border-color: #2563EB; }
   50% { border-color: #F59E0B; }
   75% { border-color: #EF4444; }
-  100% { border-color: #13ec6d; }
+  100% { border-color: #3B82F6; }
 }
 
 @keyframes wiggle {
@@ -299,3 +299,4 @@ input[type="number"] {
 ::-webkit-scrollbar-thumb:hover {
   background: #444444;
 }
+
