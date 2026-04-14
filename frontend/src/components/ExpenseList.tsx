@@ -57,20 +57,20 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
 
   // Color palette for expense avatars
   const avatarColors = [
-    'from-cyan-400 to-blue-500',
-    'from-green-400 to-emerald-500',
-    'from-yellow-400 to-orange-500',
-    'from-pink-400 to-rose-500',
-    'from-purple-400 to-indigo-500',
-    'from-red-400 to-pink-500',
+    'from-primary-500 to-primary-600',
+    'from-success-400 to-success-500',
+    'from-warning-400 to-warning-500',
+    'from-danger-400 to-danger-500',
+    'from-primary-400 to-primary-500',
+    'from-success-500 to-success-600',
   ];
 
   if (expenses.length === 0) {
     return (
       <div className="card text-center py-10">
         <div className="text-5xl mb-3 animate-float">🧾</div>
-        <p className="text-slate-600 font-medium">No hay gastos aun</p>
-        <p className="text-sm text-slate-400">Usa el formulario de arriba para agregar</p>
+        <p className="text-text-secondary font-medium">No hay gastos aun</p>
+        <p className="text-sm text-text-muted">Usa el formulario de arriba para agregar</p>
       </div>
     );
   }
@@ -78,12 +78,12 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
   return (
     <div className="card">
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ backgroundColor: '#2374E1' }}>
           <Receipt className="w-5 h-5 text-white" />
         </div>
         <div>
-          <span className="font-bold text-lg text-slate-800">Gastos recientes</span>
-          <p className="text-xs text-slate-500">{expenses.length} gasto{expenses.length !== 1 ? 's' : ''}</p>
+          <span className="font-bold text-lg text-text-primary">Gastos recientes</span>
+          <p className="text-xs text-text-secondary">{expenses.length} gasto{expenses.length !== 1 ? 's' : ''}</p>
         </div>
       </div>
 
@@ -91,11 +91,11 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
         {expenses.map((expense, index) => (
           <div
             key={expense.id}
-            className={`p-4 rounded-2xl border-2 transition-all ${
-              editingId === expense.id 
-                ? 'border-purple-300 bg-purple-50' 
-                : 'bg-gradient-to-r from-slate-50 to-white border-slate-100 hover:border-purple-200 hover:shadow-md'
-            }`}
+            className="p-4 rounded-2xl border-2 transition-all"
+            style={{ 
+              borderColor: editingId === expense.id ? '#2374E1' : '#3E4042',
+              backgroundColor: editingId === expense.id ? 'rgba(35, 116, 225, 0.1)' : '#2D2E2F'
+            }}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -103,17 +103,17 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
                   {expense.participant?.name?.charAt(0).toUpperCase() || '?'}
                 </div>
                 <div>
-                  <p className="font-bold text-slate-800">{expense.participant?.name || 'Desconocido'}</p>
-                  <p className="text-xs text-slate-500">
+                  <p className="font-bold text-text-primary">{expense.participant?.name || 'Desconocido'}</p>
+                  <p className="text-xs text-text-secondary">
                     {formatDate(expense.createdAt)}
-                    {expense.description && <span className="ml-1 text-purple-500">• {expense.description}</span>}
+                    {expense.description && <span className="ml-1 text-primary-400">• {expense.description}</span>}
                   </p>
                 </div>
               </div>
               {editingId === expense.id ? (
                 <div className="flex items-center gap-2">
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted font-bold">$</span>
                     <input
                       type="text"
                       inputMode="numeric"
@@ -123,29 +123,35 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
                       autoFocus
                     />
                   </div>
-                  <button onClick={() => handleUpdate(expense.id)} className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-xl">
+                  <button onClick={() => handleUpdate(expense.id)} className="p-2 text-white rounded-xl" style={{ backgroundColor: '#31A24C' }}>
                     <Check className="w-5 h-5" />
                   </button>
-                  <button onClick={() => setEditingId(null)} className="p-2 bg-slate-200 hover:bg-slate-300 rounded-xl">
-                    <X className="w-5 h-5 text-slate-600" />
+                  <button onClick={() => setEditingId(null)} className="p-2 rounded-xl" style={{ backgroundColor: '#3A3B3C' }}>
+                    <X className="w-5 h-5 text-text-secondary" />
                   </button>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <span className="font-black text-lg text-green-600 bg-green-50 px-3 py-1 rounded-xl">
+                  <span className="font-black text-lg px-3 py-1 rounded-xl" style={{ backgroundColor: 'rgba(49, 162, 76, 0.2)', color: '#31A24C' }}>
                     {formatMoney(Number(expense.amount), currency)}
                   </span>
                   <button
                     onClick={() => startEdit(expense)}
-                    className="p-2 hover:bg-purple-100 rounded-xl transition-all"
+                    className="p-2 rounded-xl transition-all"
+                    style={{ backgroundColor: 'transparent' }}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(35, 116, 225, 0.2)'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
-                    <Pencil className="w-4 h-4 text-purple-500" />
+                    <Pencil className="w-4 h-4 text-primary-400" />
                   </button>
                   <button
                     onClick={() => handleDelete(expense.id)}
-                    className="p-2 hover:bg-red-100 rounded-xl transition-all"
+                    className="p-2 rounded-xl transition-all"
+                    style={{ backgroundColor: 'transparent' }}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(240, 40, 73, 0.2)'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
-                    <Trash2 className="w-4 h-4 text-red-400" />
+                    <Trash2 className="w-4 h-4 text-danger-400" />
                   </button>
                 </div>
               )}

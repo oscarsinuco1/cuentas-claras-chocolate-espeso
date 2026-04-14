@@ -112,31 +112,32 @@ export default function LiveCalculations({ participants, expenses, currency }: P
   if (transfers.length === 0) {
     return (
       <div className="card text-center py-4">
-        <CheckCircle className="w-10 h-10 mx-auto mb-2 text-sage-500" />
-        <p className="text-lg font-semibold text-gray-800">Todos a paz y salvo</p>
-        <p className="text-gray-500 text-sm">No hay transferencias pendientes</p>
+        <CheckCircle className="w-10 h-10 mx-auto mb-2 text-success-400" />
+        <p className="text-lg font-semibold text-text-primary">Todos a paz y salvo</p>
+        <p className="text-text-secondary text-sm">No hay transferencias pendientes</p>
       </div>
     );
   }
 
   return (
     <div className="card">
-      <h3 className="font-semibold text-base mb-3 text-gray-800">
+      <h3 className="font-semibold text-base mb-3 text-text-primary">
         Transferencias pendientes
       </h3>
       <div className="space-y-2">
         {transfers.map((t, i) => (
           <div 
             key={i} 
-            className="flex items-center justify-between p-3 rounded-lg bg-cream-100 border border-cream-200"
+            className="flex items-center justify-between p-3 rounded-lg"
+            style={{ backgroundColor: '#2D2E2F', border: '1px solid #3E4042' }}
           >
             <div className="flex items-center gap-1.5 flex-1 flex-wrap text-sm">
-              <span className="font-medium text-gray-700">{t.fromName}</span>
-              <ArrowRight className="w-4 h-4 text-accent-500" />
-              <span className="font-medium text-gray-700">{t.toName}</span>
+              <span className="font-medium text-text-secondary">{t.fromName}</span>
+              <ArrowRight className="w-4 h-4 text-primary-400" />
+              <span className="font-medium text-text-secondary">{t.toName}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-lg text-gray-800">
+              <span className="font-bold text-lg text-text-primary">
                 {formatMoney(t.amount, currency)}
               </span>
               {t.paymentLink && (
@@ -145,7 +146,8 @@ export default function LiveCalculations({ participants, expenses, currency }: P
                     navigator.clipboard.writeText(t.paymentLink!);
                     alert('Copiado: ' + t.paymentLink);
                   }}
-                  className="p-1.5 rounded-lg bg-primary-100 hover:bg-primary-200 text-primary-600 transition-all"
+                  className="p-1.5 rounded-lg transition-all"
+                  style={{ backgroundColor: 'rgba(35, 116, 225, 0.2)', color: '#5AAFFA' }}
                   title="Copiar info de pago"
                 >
                   <Copy className="w-4 h-4" />

@@ -4,83 +4,71 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Warm & Familiar - Café con Amigos palette
+        // Facebook Dark Mode palette
+        dark: {
+          bg: '#18191A',
+          card: '#242526',
+          hover: '#3A3B3C',
+          border: '#3E4042',
+          elevated: '#2D2E2F',
+        },
+        // Facebook blue accent
         primary: {
-          50: '#f0f7f7',
-          100: '#daf0ee',
-          200: '#b8e0dc',
-          300: '#8ac9c4',
-          400: '#5aada6',
-          500: '#3f918a',
-          600: '#357872',
-          700: '#2f615d',
-          800: '#2a504d',
-          900: '#274341',
+          50: '#E7F3FF',
+          100: '#C3DFFD',
+          200: '#90C8FC',
+          300: '#5AAFFA',
+          400: '#2D96F6',
+          500: '#2374E1',
+          600: '#1A5DC4',
+          700: '#1449A3',
+          800: '#0E3680',
+          900: '#0A2660',
         },
-        // Terracotta warm accent
-        accent: {
-          50: '#fef6f3',
-          100: '#fde8e0',
-          200: '#fbd5c6',
-          300: '#f7b89f',
-          400: '#f19470',
-          500: '#e87248',
-          600: '#d4572e',
-          700: '#b14525',
-          800: '#923b23',
-          900: '#793521',
+        // Text colors
+        text: {
+          primary: '#E4E6EB',
+          secondary: '#B0B3B8',
+          muted: '#8A8D91',
         },
-        // Warm cream backgrounds
-        cream: {
-          50: '#FFFDF9',
-          100: '#FBF8F4',
-          200: '#F5EDE4',
-          300: '#EBE0D3',
-          400: '#DDD0C0',
-          500: '#CBBFAD',
-          600: '#B3A48E',
-          700: '#958571',
-          800: '#7A6C5B',
-          900: '#5C5245',
+        // Success green
+        success: {
+          50: '#E6F6EB',
+          100: '#C3EBD1',
+          200: '#8DD9A8',
+          300: '#57C77F',
+          400: '#31A24C',
+          500: '#31A24C',
+          600: '#2B8A42',
+          700: '#237036',
+          800: '#1B572A',
+          900: '#143E1F',
         },
-        // Sage green for success
-        sage: {
-          50: '#f4f8f5',
-          100: '#e6f0e8',
-          200: '#cfe1d3',
-          300: '#a8c9b0',
-          400: '#7aab86',
-          500: '#5a9168',
-          600: '#467553',
-          700: '#3a5e44',
-          800: '#314c39',
-          900: '#2a4031',
+        // Warning yellow
+        warning: {
+          50: '#FFF8E6',
+          100: '#FFEDB8',
+          200: '#FFE08A',
+          300: '#FFD54F',
+          400: '#FFCA28',
+          500: '#F5B800',
+          600: '#D99E00',
+          700: '#B38200',
+          800: '#8C6600',
+          900: '#664A00',
         },
-        // Warm amber for warnings
-        amber: {
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-          800: '#92400e',
-          900: '#78350f',
-        },
-        // Soft coral for errors
-        coral: {
-          50: '#fef5f5',
-          100: '#fee2e2',
-          200: '#fecaca',
-          300: '#fca5a5',
-          400: '#f87171',
-          500: '#ef4444',
-          600: '#dc2626',
-          700: '#b91c1c',
-          800: '#991b1b',
-          900: '#7f1d1d',
+        // Danger red
+        danger: {
+          50: '#FFEBE9',
+          100: '#FECECA',
+          200: '#FDA3A3',
+          300: '#FA6E6E',
+          400: '#F54242',
+          500: '#F02849',
+          600: '#D91A3D',
+          700: '#B31432',
+          800: '#8C0F27',
+          900: '#660A1C',
         },
       },
       fontFamily: {

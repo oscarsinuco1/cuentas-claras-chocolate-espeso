@@ -4,16 +4,15 @@ import toast from 'react-hot-toast';
 import { participantApi, expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
 import type { Participant, Expense, Currency } from '@/types';
-import clsx from 'clsx';
 
-// Color palette for avatars - warm tones
+// Color palette for avatars - Facebook dark mode style
 const avatarColors = [
   'from-primary-500 to-primary-600',
-  'from-accent-500 to-accent-600',
-  'from-sage-500 to-sage-600',
-  'from-amber-500 to-amber-600',
-  'from-coral-400 to-coral-500',
+  'from-success-400 to-success-500',
+  'from-warning-400 to-warning-500',
+  'from-danger-400 to-danger-500',
   'from-primary-400 to-primary-500',
+  'from-success-500 to-success-600',
 ];
 
 interface Props {
@@ -132,19 +131,19 @@ export default function ParticipantList({ planCode, participants, expenses, curr
         className="w-full flex items-center justify-between"
       >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #3f918a 0%, #5aada6 100%)' }}>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#2374E1' }}>
             <Users className="w-4 h-4 text-white" />
           </div>
           <div className="text-left">
-            <span className="font-semibold text-gray-800">Participantes</span>
-            <p className="text-xs text-gray-500">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
+            <span className="font-semibold text-text-primary">Participantes</span>
+            <p className="text-xs text-text-secondary">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
           </div>
         </div>
-        <div className={`p-2 rounded-lg transition-all ${isExpanded ? 'bg-gray-100' : 'bg-gray-50'}`}>
+        <div className="p-2 rounded-lg transition-all" style={{ backgroundColor: isExpanded ? '#3A3B3C' : '#2D2E2F' }}>
           {isExpanded ? (
-            <ChevronUp className="w-5 h-5 text-gray-600" />
+            <ChevronUp className="w-5 h-5 text-text-primary" />
           ) : (
-            <ChevronDown className="w-5 h-5 text-gray-400" />
+            <ChevronDown className="w-5 h-5 text-text-muted" />
           )}
         </div>
       </button>
@@ -160,12 +159,11 @@ export default function ParticipantList({ planCode, participants, expenses, curr
             return (
                 <div
                 key={p.id}
-                className={clsx(
-                  'rounded-lg border transition-all overflow-hidden',
-                  isEditing 
-                    ? 'border-primary-300 bg-primary-50' 
-                    : 'border-gray-100 bg-gray-50'
-                )}
+                className="rounded-lg border transition-all overflow-hidden"
+                style={{ 
+                  borderColor: isEditing ? '#2374E1' : '#3E4042', 
+                  backgroundColor: isEditing ? 'rgba(35, 116, 225, 0.1)' : '#2D2E2F' 
+                }}
               >
                 <div className="p-3">
                   {isEditing ? (
@@ -186,7 +184,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                         placeholder="A dónde pagar (Nequi, cuenta, alias...)"
                       />
                       <div className="flex gap-2 items-center">
-                        <span className="text-sm text-gray-600">Paga por</span>
+                        <span className="text-sm text-text-secondary">Paga por</span>
                         <input
                           type="text"
                           inputMode="numeric"
@@ -195,17 +193,17 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                           className="input py-2 w-16 text-center font-bold"
                           placeholder="1"
                         />
-                        <span className="text-sm text-gray-600">persona(s)</span>
+                        <span className="text-sm text-text-secondary">persona(s)</span>
                       </div>
                       
                       {/* Edit expenses */}
                       {editExpenses.length > 0 && (
-                        <div className="border-t border-gray-200 pt-3 mt-3">
-                          <p className="text-sm font-bold text-gray-600 mb-2">Gastos:</p>
+                        <div className="pt-3 mt-3" style={{ borderTop: '1px solid #3E4042' }}>
+                          <p className="text-sm font-bold text-text-secondary mb-2">Gastos:</p>
                           <div className="space-y-2">
                             {editExpenses.map((exp) => (
                               <div key={exp.id} className="flex items-center gap-2">
-                                <span className="text-gray-400 font-bold">$</span>
+                                <span className="text-text-muted font-bold">$</span>
                                 <input
                                   type="text"
                                   inputMode="numeric"
@@ -215,9 +213,12 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                                 />
                                 <button 
                                   onClick={() => handleDeleteExpense(exp.id)}
-                                  className="p-1.5 hover:bg-coral-100 rounded-lg"
+                                  className="p-1.5 rounded-lg transition-colors"
+                                  style={{ backgroundColor: 'transparent' }}
+                                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(240, 40, 73, 0.2)'}
+                                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                                 >
-                                  <Trash2 className="w-4 h-4 text-coral-500" />
+                                  <Trash2 className="w-4 h-4 text-danger-400" />
                                 </button>
                               </div>
                             ))}
@@ -242,10 +243,10 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                           {p.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <p className="font-bold text-gray-800">{p.name}</p>
+                          <p className="font-bold text-text-primary">{p.name}</p>
                           <div className="flex items-center gap-2 text-xs flex-wrap">
                             {p.multiplier > 1 && (
-                          <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs">
+                          <span className="px-2 py-0.5 rounded text-xs" style={{ backgroundColor: '#3A3B3C', color: '#B0B3B8' }}>
                                 x{p.multiplier}
                               </span>
                             )}
@@ -255,14 +256,15 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                                   navigator.clipboard.writeText(p.paymentLink!);
                                   alert('Copiado: ' + p.paymentLink);
                                 }}
-                                className="text-primary-600 hover:bg-primary-100 flex items-center gap-1 bg-primary-50 px-2 py-0.5 rounded text-xs transition-colors"
+                                className="flex items-center gap-1 px-2 py-0.5 rounded text-xs transition-colors"
+                                style={{ backgroundColor: 'rgba(35, 116, 225, 0.2)', color: '#5AAFFA' }}
                               >
                                 <LinkIcon className="w-3 h-3" />
                                 Copiar pago
                               </button>
                             )}
                             {participantExpenses.length > 0 && (
-                              <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs">
+                              <span className="px-2 py-0.5 rounded text-xs" style={{ backgroundColor: '#3A3B3C', color: '#8A8D91' }}>
                                 {participantExpenses.length} gasto{participantExpenses.length !== 1 ? 's' : ''}
                               </span>
                             )}
@@ -270,23 +272,29 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-black text-lg text-sage-600">
+                        <p className="font-black text-lg text-success-400">
                           {formatMoney(totalPaid, currency)}
                         </p>
                         <div className="flex gap-1 justify-end">
                           <button
                             onClick={() => startEdit(p)}
-                            className="p-1.5 hover:bg-gray-100 rounded-lg transition-all"
+                            className="p-1.5 rounded-lg transition-all"
                             title="Editar"
+                            style={{ backgroundColor: 'transparent' }}
+                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'}
+                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                           >
-                            <Pencil className="w-4 h-4 text-gray-400" />
+                            <Pencil className="w-4 h-4 text-text-muted" />
                           </button>
                           <button
                             onClick={() => handleRemove(p.id)}
-                            className="p-1.5 hover:bg-coral-100 rounded-lg transition-all"
+                            className="p-1.5 rounded-lg transition-all"
                             title="Eliminar"
+                            style={{ backgroundColor: 'transparent' }}
+                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(240, 40, 73, 0.2)'}
+                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                           >
-                            <Trash2 className="w-4 h-4 text-coral-500" />
+                            <Trash2 className="w-4 h-4 text-danger-400" />
                           </button>
                         </div>
                       </div>

@@ -66,18 +66,18 @@ export default function HistoryModal({ planCode, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
       
       {/* Modal */}
-      <div className="relative bg-white w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl animate-slide-up">
+      <div className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl animate-slide-up" style={{ backgroundColor: '#242526' }}>
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-slate-100 px-4 py-3 flex items-center justify-between">
+        <div className="sticky top-0 px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#242526', borderBottom: '1px solid #3E4042' }}>
           <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-slate-600" />
-            <h2 className="text-lg font-bold">Historial de cambios</h2>
+            <Clock className="w-5 h-5 text-text-secondary" />
+            <h2 className="text-lg font-bold text-text-primary">Historial de cambios</h2>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-lg">
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }}>
+            <X className="w-5 h-5 text-text-secondary" />
           </button>
         </div>
 
@@ -85,18 +85,18 @@ export default function HistoryModal({ planCode, onClose }: Props) {
         <div className="p-4">
           {isLoading && (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
+              <Loader2 className="w-8 h-8 animate-spin text-primary-400" />
             </div>
           )}
 
           {error && (
-            <div className="text-center py-8 text-red-500">
+            <div className="text-center py-8 text-danger-400">
               Error al cargar historial
             </div>
           )}
 
           {data && data.data.length === 0 && (
-            <div className="text-center py-8 text-slate-500">
+            <div className="text-center py-8 text-text-muted">
               No hay cambios registrados
             </div>
           )}
@@ -106,20 +106,23 @@ export default function HistoryModal({ planCode, onClose }: Props) {
               {data.data.map((entry) => (
                 <div
                   key={entry.id}
-                  className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"
+                  className="flex items-start gap-3 p-3 rounded-xl transition-colors"
+                  style={{ backgroundColor: 'transparent' }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  <div className="mt-0.5 p-1.5 rounded-lg bg-slate-100">
-                    {ACTION_ICONS[entry.action] || <Clock className="w-4 h-4 text-slate-400" />}
+                  <div className="mt-0.5 p-1.5 rounded-lg" style={{ backgroundColor: '#3A3B3C' }}>
+                    {ACTION_ICONS[entry.action] || <Clock className="w-4 h-4 text-text-muted" />}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm">
+                    <p className="font-medium text-sm text-text-primary">
                       {ACTION_LABELS[entry.action] || entry.action}
                     </p>
-                    <p className="text-sm text-slate-500 truncate">
+                    <p className="text-sm text-text-secondary truncate">
                       {getDescription(entry)}
                     </p>
                   </div>
-                  <span className="text-xs text-slate-400 whitespace-nowrap">
+                  <span className="text-xs text-text-muted whitespace-nowrap">
                     {formatDate(entry.createdAt)}
                   </span>
                 </div>
