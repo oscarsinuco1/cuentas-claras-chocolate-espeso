@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Plus, Zap } from 'lucide-react';
+import { Plus, UserPlus } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
@@ -82,10 +82,10 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
   return (
     <form onSubmit={handleSubmit} className="card space-y-3">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 shrink-0 rounded-lg bg-slate-700 flex items-center justify-center">
-          <Zap className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 shrink-0 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+          <UserPlus className="w-4 h-4 text-emerald-600" />
         </div>
-        <span className="font-semibold text-slate-800">Agregar participante</span>
+        <span className="font-semibold text-slate-700">Agregar participante</span>
       </div>
 
       <div className="space-y-2">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Plus, Users } from 'lucide-react';
+import { ArrowRight, Plus, Users, Receipt, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { planApi } from '@/services/api';
 import { CURRENCIES, getPreferredCurrency, setPreferredCurrency } from '@/utils/currency';
@@ -62,12 +62,17 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Logo & Title */}
-        <div className="text-center space-y-3 animate-bounce-in">
-          <h1 className="text-3xl font-bold text-white">
+        <div className="text-center space-y-4 animate-bounce-in">
+          <div className="w-20 h-20 mx-auto rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 flex items-center justify-center shadow-lg shadow-blue-500/10">
+            <Receipt className="w-10 h-10 text-blue-500" />
+          </div>
+          <h1 className="text-3xl font-bold text-slate-800">
             Cuentas Claras
           </h1>
-          <p className="text-lg text-slate-400 font-medium">
+          <p className="text-base text-slate-500 font-medium flex items-center justify-center gap-2">
+            <Sparkles className="w-4 h-4 text-amber-500" />
             Divide gastos de forma simple
+            <Sparkles className="w-4 h-4 text-amber-500" />
           </p>
         </div>
 
@@ -105,9 +110,9 @@ export default function HomePage() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 animate-slide-up stagger-2">
-          <div className="flex-1 h-px bg-slate-600" />
+          <div className="flex-1 h-px bg-slate-300/50" />
           <span className="text-sm text-slate-400">o</span>
-          <div className="flex-1 h-px bg-slate-600" />
+          <div className="flex-1 h-px bg-slate-300/50" />
         </div>
 
         {/* Create Plan */}
@@ -158,7 +163,7 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-sm text-slate-500 animate-slide-up stagger-4">
+        <p className="text-center text-sm text-slate-400 animate-slide-up stagger-4">
           Divide gastos facil y rapido
         </p>
       </div>

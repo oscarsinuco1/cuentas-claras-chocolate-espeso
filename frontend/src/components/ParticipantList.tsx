@@ -132,17 +132,17 @@ export default function ParticipantList({ planCode, participants, expenses, curr
         className="w-full flex items-center justify-between"
       >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-slate-700 flex items-center justify-center">
-            <Users className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+            <Users className="w-4 h-4 text-blue-600" />
           </div>
           <div className="text-left">
-            <span className="font-semibold text-slate-800">Participantes</span>
-            <p className="text-xs text-slate-500">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
+            <span className="font-semibold text-slate-700">Participantes</span>
+            <p className="text-xs text-slate-400">{participants.length} persona{participants.length !== 1 ? 's' : ''}</p>
           </div>
         </div>
-        <div className={`p-2 rounded-lg transition-all ${isExpanded ? 'bg-slate-100' : 'bg-slate-50'}`}>
+        <div className={`p-2 rounded-lg transition-all ${isExpanded ? 'bg-blue-50' : 'bg-slate-50'}`}>
           {isExpanded ? (
-            <ChevronUp className="w-5 h-5 text-slate-600" />
+            <ChevronUp className="w-5 h-5 text-blue-500" />
           ) : (
             <ChevronDown className="w-5 h-5 text-slate-400" />
           )}

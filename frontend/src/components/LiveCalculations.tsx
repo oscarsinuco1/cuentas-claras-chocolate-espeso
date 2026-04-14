@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ArrowRight, Copy, PartyPopper } from 'lucide-react';
+import { ArrowRight, Copy, CheckCircle } from 'lucide-react';
 import type { Participant, Expense, Currency } from '@/types';
 import { formatMoney } from '@/utils/currency';
 
@@ -112,31 +112,31 @@ export default function LiveCalculations({ participants, expenses, currency }: P
   if (transfers.length === 0) {
     return (
       <div className="card text-center py-4">
-        <PartyPopper className="w-10 h-10 mx-auto mb-2 text-emerald-500" />
-        <p className="text-lg font-semibold text-slate-800">Todos a paz y salvo</p>
-        <p className="text-slate-500 text-sm">No hay transferencias pendientes</p>
+        <CheckCircle className="w-10 h-10 mx-auto mb-2 text-emerald-500" />
+        <p className="text-lg font-semibold text-slate-700">Todos a paz y salvo</p>
+        <p className="text-slate-400 text-sm">No hay transferencias pendientes</p>
       </div>
     );
   }
 
   return (
     <div className="card">
-      <h3 className="font-semibold text-base mb-3 text-slate-800">
+      <h3 className="font-semibold text-base mb-3 text-slate-700">
         Transferencias pendientes
       </h3>
       <div className="space-y-2">
         {transfers.map((t, i) => (
           <div 
             key={i} 
-            className="flex items-center justify-between p-3 rounded-lg bg-slate-50 border border-slate-100"
+            className="flex items-center justify-between p-3 rounded-lg bg-slate-50 border border-slate-200/80"
           >
             <div className="flex items-center gap-1.5 flex-1 flex-wrap text-sm">
-              <span className="font-medium text-slate-700">{t.fromName}</span>
-              <ArrowRight className="w-4 h-4 text-slate-400" />
-              <span className="font-medium text-slate-700">{t.toName}</span>
+              <span className="font-medium text-slate-600">{t.fromName}</span>
+              <ArrowRight className="w-4 h-4 text-blue-400" />
+              <span className="font-medium text-slate-600">{t.toName}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-lg text-slate-800">
+              <span className="font-bold text-lg text-slate-700">
                 {formatMoney(t.amount, currency)}
               </span>
               {t.paymentLink && (
@@ -145,7 +145,7 @@ export default function LiveCalculations({ participants, expenses, currency }: P
                     navigator.clipboard.writeText(t.paymentLink!);
                     alert('Copiado: ' + t.paymentLink);
                   }}
-                  className="p-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-600 transition-all"
+                  className="p-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-500 transition-all"
                   title="Copiar info de pago"
                 >
                   <Copy className="w-4 h-4" />
