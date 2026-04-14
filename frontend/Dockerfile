@@ -26,9 +26,15 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm ci --omit=dev
+
 # Copy built assets and server
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/server.js ./
+COPY server.js ./
 
 # Add non-root user
 RUN addgroup -g 1001 -S nodejs && \
