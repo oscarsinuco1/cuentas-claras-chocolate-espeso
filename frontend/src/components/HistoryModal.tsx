@@ -69,9 +69,9 @@ export default function HistoryModal({ planCode, onClose }: Props) {
       <div className="absolute inset-0 bg-black/70" onClick={onClose} />
       
       {/* Modal */}
-      <div className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl animate-slide-up" style={{ backgroundColor: '#242526' }}>
+      <div className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl animate-slide-up" style={{ backgroundColor: '#FFFFFF' }}>
         {/* Header */}
-        <div className="sticky top-0 px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#242526', borderBottom: '1px solid #3E4042' }}>
+        <div className="sticky top-0 px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E6EB' }}>
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5 text-text-secondary" />
             <h2 className="text-lg font-bold text-text-primary">Historial de cambios</h2>
@@ -108,10 +108,10 @@ export default function HistoryModal({ planCode, onClose }: Props) {
                   key={entry.id}
                   className="flex items-start gap-3 p-3 rounded-xl transition-colors"
                   style={{ backgroundColor: 'transparent' }}
-                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#F0F2F5'}
                   onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  <div className="mt-0.5 p-1.5 rounded-lg" style={{ backgroundColor: '#3A3B3C' }}>
+                  <div className="mt-0.5 p-1.5 rounded-lg" style={{ backgroundColor: '#F0F2F5' }}>
                     {ACTION_ICONS[entry.action] || <Clock className="w-4 h-4 text-text-muted" />}
                   </div>
                   <div className="flex-1 min-w-0">

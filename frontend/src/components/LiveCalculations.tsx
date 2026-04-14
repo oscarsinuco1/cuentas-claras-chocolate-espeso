@@ -129,10 +129,10 @@ export default function LiveCalculations({ participants, expenses, currency }: P
           <div 
             key={i} 
             className="flex items-center justify-between p-3 rounded-lg"
-            style={{ backgroundColor: '#2D2E2F', border: '1px solid #3E4042' }}
+            style={{ backgroundColor: '#F5F7FA', border: '1px solid #E4E6EB' }}
           >
             <div className="flex items-center gap-2 flex-1 flex-wrap text-sm">
-              <ArrowRightLeft className="w-4 h-4 text-primary-400" />
+              <ArrowRightLeft className="w-4 h-4 text-primary-600\" />
               <span className="text-text-secondary">
                 <span className="font-medium text-text-primary">{t.fromName}</span>
                 {' le debe a '}

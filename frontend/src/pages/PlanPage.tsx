@@ -155,7 +155,7 @@ Código: ${code}`;
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <div className="relative">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#2374E1' }}>
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#13ec6d' }}>
             <Loader2 className="w-8 h-8 text-white animate-spin" />
           </div>
         </div>
@@ -170,29 +170,29 @@ Código: ${code}`;
   return (
     <div className="min-h-screen pb-16">
       {/* Header */}
-      <header className="sticky top-0 z-10" style={{ backgroundColor: '#242526', borderBottom: '1px solid #3E4042' }}>
+      <header className="sticky top-0 z-10" style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E6EB' }}>
         <div className="max-w-lg mx-auto px-3 py-2.5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 flex-1 min-w-0">
-              <button onClick={() => navigate('/')} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+              <button onClick={() => navigate('/')} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#F0F2F5'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                 <ArrowLeft className="w-5 h-5 text-text-secondary" />
               </button>
               <div className="min-w-0">
                 <h1 className="font-bold text-lg text-text-primary truncate">{plan.name}</h1>
               <div className="flex items-center gap-1.5 text-xs">
-                <span className="font-mono text-text-secondary px-2 py-0.5 rounded" style={{ backgroundColor: '#3A3B3C' }}>{code}</span>
-                <span className="text-xs px-2 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(35, 116, 225, 0.2)', color: '#5AAFFA' }}>{currency}</span>
-                <button onClick={handleCopy} className="p-1.5 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3A3B3C'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
-                  {copied ? <Check className="w-4 h-4 text-success-400" /> : <Copy className="w-4 h-4 text-text-muted" />}
+                <span className="font-mono text-text-secondary px-2 py-0.5 rounded" style={{ backgroundColor: '#F0F2F5' }}>{code}</span>
+                <span className="text-xs px-2 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(19, 236, 109, 0.15)', color: '#059669' }}>{currency}</span>
+                <button onClick={handleCopy} className="p-1.5 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#F0F2F5'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                  {copied ? <Check className="w-4 h-4 text-success-500" /> : <Copy className="w-4 h-4 text-text-muted" />}
                 </button>
               </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
               {isConnected ? (
-                <div className="flex items-center gap-1 px-2 py-1 rounded-full" style={{ backgroundColor: 'rgba(49, 162, 76, 0.2)', border: '1px solid rgba(49, 162, 76, 0.3)' }}>
-                  <div className="w-2 h-2 bg-success-400 rounded-full animate-pulse"></div>
-                  <span className="text-xs font-medium text-success-300">En vivo</span>
+                <div className="flex items-center gap-1 px-2 py-1 rounded-full" style={{ backgroundColor: 'rgba(19, 236, 109, 0.15)', border: '1px solid rgba(19, 236, 109, 0.3)' }}>
+                  <div className="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></div>
+                  <span className="text-xs font-medium text-primary-700">En vivo</span>
                 </div>
               ) : (
                 <WifiOff className="w-4 h-4 text-text-muted" />
@@ -213,7 +213,7 @@ Código: ${code}`;
         </div>
 
         {/* Summary Card - Simple */}
-        <div className="card animate-slide-up stagger-1" style={{ backgroundColor: '#2374E1' }}>
+        <div className="card animate-slide-up stagger-1" style={{ backgroundColor: '#13ec6d' }}>
           <div className="text-center py-1">
             <p className="text-white/80 text-xs font-medium">Gastos Totales</p>
             <p className="text-3xl font-bold text-white">
@@ -237,12 +237,12 @@ Código: ${code}`;
       </main>
 
       {/* Bottom Actions */}
-      <div className="fixed bottom-0 left-0 right-0 p-3" style={{ backgroundColor: '#242526', borderTop: '1px solid #3E4042' }}>
+      <div className="fixed bottom-0 left-0 right-0 p-3" style={{ backgroundColor: '#FFFFFF', borderTop: '1px solid #E4E6EB' }}>
         <div className="max-w-lg mx-auto">
           <button
             onClick={() => setShowHistory(true)}
             className="w-full py-2.5 font-semibold rounded-xl flex items-center justify-center gap-2 transition-all text-sm text-text-primary"
-            style={{ backgroundColor: '#3A3B3C', border: '1px solid #3E4042' }}
+            style={{ backgroundColor: '#F0F2F5', border: '1px solid #E4E6EB' }}
           >
             <History className="w-4 h-4" />
             Ver Historial

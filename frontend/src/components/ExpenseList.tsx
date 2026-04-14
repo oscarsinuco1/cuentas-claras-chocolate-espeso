@@ -78,7 +78,7 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
   return (
     <div className="card">
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ backgroundColor: '#2374E1' }}>
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ backgroundColor: '#13ec6d' }}>
           <Receipt className="w-5 h-5 text-white" />
         </div>
         <div>
@@ -93,8 +93,8 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
             key={expense.id}
             className="p-4 rounded-2xl border-2 transition-all"
             style={{ 
-              borderColor: editingId === expense.id ? '#2374E1' : '#3E4042',
-              backgroundColor: editingId === expense.id ? 'rgba(35, 116, 225, 0.1)' : '#2D2E2F'
+              borderColor: editingId === expense.id ? '#13ec6d' : '#E4E6EB',
+              backgroundColor: editingId === expense.id ? 'rgba(19, 236, 109, 0.1)' : '#FFFFFF'
             }}
           >
             <div className="flex items-center justify-between">
@@ -123,26 +123,26 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
                       autoFocus
                     />
                   </div>
-                  <button onClick={() => handleUpdate(expense.id)} className="p-2 text-white rounded-xl" style={{ backgroundColor: '#31A24C' }}>
+                  <button onClick={() => handleUpdate(expense.id)} className="p-2 text-white rounded-xl" style={{ backgroundColor: '#13ec6d' }}>
                     <Check className="w-5 h-5" />
                   </button>
-                  <button onClick={() => setEditingId(null)} className="p-2 rounded-xl" style={{ backgroundColor: '#3A3B3C' }}>
+                  <button onClick={() => setEditingId(null)} className="p-2 rounded-xl" style={{ backgroundColor: '#F0F2F5' }}>
                     <X className="w-5 h-5 text-text-secondary" />
                   </button>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <span className="font-black text-lg px-3 py-1 rounded-xl" style={{ backgroundColor: 'rgba(49, 162, 76, 0.2)', color: '#31A24C' }}>
+                  <span className="font-black text-lg px-3 py-1 rounded-xl" style={{ backgroundColor: 'rgba(19, 236, 109, 0.15)', color: '#059669' }}>
                     {formatMoney(Number(expense.amount), currency)}
                   </span>
                   <button
                     onClick={() => startEdit(expense)}
                     className="p-2 rounded-xl transition-all"
                     style={{ backgroundColor: 'transparent' }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(35, 116, 225, 0.2)'}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(19, 236, 109, 0.15)'}
                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
-                    <Pencil className="w-4 h-4 text-primary-400" />
+                    <Pencil className="w-4 h-4 text-primary-600" />
                   </button>
                   <button
                     onClick={() => handleDelete(expense.id)}

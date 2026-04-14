@@ -19,9 +19,9 @@ export default function CalculationModal({ planCode, onClose }: Props) {
       <div className="absolute inset-0 bg-black/70" onClick={onClose} />
       
       {/* Modal */}
-      <div className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl animate-slide-up" style={{ backgroundColor: '#242526' }}>
+      <div className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-2xl animate-slide-up" style={{ backgroundColor: '#FFFFFF' }}>
         {/* Header */}
-        <div className="sticky top-0 px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#242526', borderBottom: '1px solid #3E4042' }}>
+        <div className="sticky top-0 px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E6EB' }}>
           <h2 className="text-lg font-bold text-text-primary">Cálculo de cuentas</h2>
           <button onClick={onClose} className="p-2 rounded-lg transition-colors" style={{ backgroundColor: 'transparent' }}>
             <X className="w-5 h-5 text-text-secondary" />
@@ -45,20 +45,20 @@ export default function CalculationModal({ planCode, onClose }: Props) {
           {data && (
             <>
               {/* Summary */}
-              <div className="rounded-2xl p-4 space-y-2" style={{ backgroundColor: 'rgba(49, 162, 76, 0.15)', border: '1px solid rgba(49, 162, 76, 0.3)' }}>
+              <div className="rounded-2xl p-4 space-y-2" style={{ backgroundColor: 'rgba(19, 236, 109, 0.1)', border: '1px solid rgba(19, 236, 109, 0.3)' }}>
                 <div className="flex justify-between">
-                  <span className="text-success-400">Total gastos</span>
-                  <span className="font-bold text-success-300">
+                  <span className="text-primary-700">Total gastos</span>
+                  <span className="font-bold text-primary-700">
                     ${data.summary.totalExpenses.toLocaleString('es-CO')}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-success-400">Personas</span>
-                  <span className="font-bold text-success-300">{data.summary.totalPeople}</span>
+                  <span className="text-primary-700">Personas</span>
+                  <span className="font-bold text-primary-700">{data.summary.totalPeople}</span>
                 </div>
                 <div className="flex justify-between text-lg">
-                  <span className="text-success-400 font-medium">Por persona</span>
-                  <span className="font-bold text-success-300">
+                  <span className="text-primary-700 font-medium">Por persona</span>
+                  <span className="font-bold text-primary-700">
                     ${data.summary.perPersonShare.toLocaleString('es-CO')}
                   </span>
                 </div>
@@ -69,9 +69,9 @@ export default function CalculationModal({ planCode, onClose }: Props) {
                 <h3 className="font-semibold mb-3 text-text-primary">Balance por persona</h3>
                 <div className="space-y-2">
                   {data.balances.map((b) => (
-                    <div key={b.participantId} className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: '#2D2E2F' }}>
+                    <div key={b.participantId} className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: '#F5F7FA' }}>
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: '#3A3B3C' }}>
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: '#13ec6d' }}>
                           {b.name.charAt(0)}
                         </div>
                         <div>
