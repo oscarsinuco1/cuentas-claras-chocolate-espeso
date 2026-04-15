@@ -110,12 +110,12 @@ ${window.location.href}
 Código: ${code}`;
   };
 
-  const handleCopy = async () => {
-    if (!code || !plan) return;
+  const handleCopyCode = async () => {
+    if (!code) return;
     try {
-      await navigator.clipboard.writeText(getShareMessage());
+      await navigator.clipboard.writeText(code);
       setCopied(true);
-      toast.success('Enlace copiado');
+      toast.success('Código copiado');
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error('No se pudo copiar');
@@ -130,7 +130,13 @@ Código: ${code}`;
         text: getShareMessage(),
       });
     } catch {
-      handleCopy();
+      // Fallback: copiar mensaje completo al portapapeles
+      try {
+        await navigator.clipboard.writeText(getShareMessage());
+        toast.success('Enlace copiado');
+      } catch {
+        toast.error('No se pudo compartir');
+      }
     }
   };
 
@@ -184,7 +190,7 @@ Código: ${code}`;
               <div className="flex items-center gap-1.5 text-xs">
                 <span className="font-mono text-text-secondary px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)' }}>{code}</span>
                 <span className="text-xs px-2 py-0.5 rounded font-medium" style={{ backgroundColor: 'rgba(59, 130, 246, 0.15)', color: '#059669' }}>{currency}</span>
-                <button onClick={handleCopy} className="p-1.5 rounded-full transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                <button onClick={handleCopyCode} className="p-1.5 rounded-full transition-colors" style={{ backgroundColor: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
                   {copied ? <Check className="w-4 h-4 text-success-500" /> : <Copy className="w-4 h-4 text-text-muted" />}
                 </button>
               </div>
