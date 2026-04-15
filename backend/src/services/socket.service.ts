@@ -16,7 +16,7 @@ export function setupSocketHandlers(io: Server, redisSub: Redis): void {
 
     // Join a plan room
     socket.on('join:plan', (planCode: string) => {
-      if (typeof planCode !== 'string' || planCode.length > 10) {
+      if (typeof planCode !== 'string' || planCode.length > 14) {
         socket.emit('error', { message: 'Invalid plan code' });
         return;
       }
