@@ -57,7 +57,7 @@ export default function AdBanner({
 
   // En desarrollo, mostrar placeholder
   const isDev = import.meta.env.DEV;
-  const clientId = import.meta.env.VITE_ADSENSE_CLIENT_ID || 'ca-pub-XXXXXXXXXX';
+  const clientId = import.meta.env.VITE_ADSENSE_CLIENT_ID || 'ca-pub-5389240975670392';
 
   if (isDev) {
     return (
