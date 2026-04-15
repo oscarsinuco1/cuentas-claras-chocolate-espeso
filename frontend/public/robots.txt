@@ -1,12 +1,12 @@
 # Cuentas Claras - Robots.txt
-# https://cuentas-claras.app
+# https://diligent-respect-production-732a.up.railway.app
 
 User-agent: *
 Allow: /
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://cuentas-claras.app/sitemap.xml
+Sitemap: https://diligent-respect-production-732a.up.railway.app/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
