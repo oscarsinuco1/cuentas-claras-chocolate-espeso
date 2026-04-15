@@ -13,6 +13,7 @@ const ACTION_ICONS: Record<string, React.ReactNode> = {
   DELETE_EXPENSE: <Trash2 className="w-4 h-4 text-red-500" />,
   CREATE_PARTICIPANT: <UserPlus className="w-4 h-4 text-primary-500" />,
   UPDATE_PARTICIPANT: <Pencil className="w-4 h-4 text-amber-500" />,
+  DELETE_PARTICIPANT: <UserMinus className="w-4 h-4 text-red-500" />,
   REMOVE_PARTICIPANT: <UserMinus className="w-4 h-4 text-red-500" />,
   REACTIVATE_PARTICIPANT: <UserPlus className="w-4 h-4 text-emerald-500" />,
 };
@@ -23,6 +24,7 @@ const ACTION_LABELS: Record<string, string> = {
   DELETE_EXPENSE: 'Gasto eliminado',
   CREATE_PARTICIPANT: 'Nuevo participante',
   UPDATE_PARTICIPANT: 'Participante editado',
+  DELETE_PARTICIPANT: 'Participante eliminado',
   REMOVE_PARTICIPANT: 'Participante eliminado',
   REACTIVATE_PARTICIPANT: 'Participante reactivado',
 };
