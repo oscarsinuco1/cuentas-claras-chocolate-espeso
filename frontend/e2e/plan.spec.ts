@@ -11,12 +11,12 @@ test.describe('Plan Flow', () => {
     await page.getByRole('button', { name: 'Crear Plan' }).click();
 
     // Should redirect to plan page
-    await expect(page).toHaveURL(/\/plan\/[A-Z0-9]{4}-[A-Z0-9]{4}/);
+    await expect(page).toHaveURL(/\/plan\/[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}/);
 
     // Get the plan code from URL
     const url = page.url();
     const code = url.split('/plan/')[1];
-    expect(code).toMatch(/^[A-Z0-9]{4}-[A-Z0-9]{4}$/);
+    expect(code).toMatch(/^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/);
 
     // Should display plan title
     await expect(page.getByText('Test E2E Plan')).toBeVisible();
@@ -54,7 +54,7 @@ test.describe('Plan Flow', () => {
     // Open another browser context and join the same plan
     const page2 = await context.newPage();
     await page2.goto('/');
-    await page2.getByPlaceholder('XXXX-XXXX').fill(code!);
+    await page2.getByPlaceholder('XXXX-XXXX-XXXX').fill(code!);
     await page2.getByRole('button').filter({ has: page2.locator('svg') }).first().click();
 
     // Should see the same plan

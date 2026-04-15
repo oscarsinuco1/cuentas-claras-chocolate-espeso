@@ -11,7 +11,7 @@ test.describe('Home Page', () => {
   });
 
   test('should have a join plan input', async ({ page }) => {
-    const input = page.getByPlaceholder('XXXX-XXXX');
+    const input = page.getByPlaceholder('XXXX-XXXX-XXXX');
     await expect(input).toBeVisible();
     await expect(input).toBeEnabled();
   });
@@ -25,8 +25,8 @@ test.describe('Home Page', () => {
   });
 
   test('should show error when joining invalid plan code', async ({ page }) => {
-    await page.getByPlaceholder('XXXX-XXXX').fill('ABCD-1234');
-    await page.getByPlaceholder('XXXX-XXXX').press('Enter');
+    await page.getByPlaceholder('XXXX-XXXX-XXXX').fill('ABCD-1234-EFGH');
+    await page.getByPlaceholder('XXXX-XXXX-XXXX').press('Enter');
     
     // Wait for error toast
     await expect(page.getByText('Plan no encontrado')).toBeVisible({ timeout: 5000 });
@@ -44,10 +44,10 @@ test.describe('Home Page', () => {
   });
 
   test('should format join code input to uppercase', async ({ page }) => {
-    const input = page.getByPlaceholder('XXXX-XXXX');
-    await input.fill('abcd-efgh');
+    const input = page.getByPlaceholder('XXXX-XXXX-XXXX');
+    await input.fill('abcd-efgh-ijkl');
     
-    await expect(input).toHaveValue('ABCD-EFGH');
+    await expect(input).toHaveValue('ABCD-EFGH-IJKL');
   });
 });
 

@@ -89,14 +89,14 @@ export default function HomePage() {
               type="text"
               value={joinCode}
               onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
-              placeholder="XXXX-XXXX"
-              maxLength={9}
+              placeholder="XXXX-XXXX-XXXX"
+              maxLength={14}
               className="input flex-1 text-center font-mono uppercase tracking-widest text-xl"
               autoComplete="off"
             />
             <button
               type="submit"
-              disabled={isJoining || joinCode.length < 9}
+              disabled={isJoining || joinCode.length < 14}
               className="btn-primary px-6"
             >
               {isJoining ? (

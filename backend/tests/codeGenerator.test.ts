@@ -3,9 +3,9 @@ import { generatePlanCode, isValidPlanCode } from '../src/utils/codeGenerator.js
 
 describe('Code Generator', () => {
   describe('generatePlanCode', () => {
-    it('should generate a code in format XXXX-XXXX', () => {
+    it('should generate a code in format XXXX-XXXX-XXXX', () => {
       const code = generatePlanCode();
-      expect(code).toMatch(/^[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/);
+      expect(code).toMatch(/^[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/);
     });
 
     it('should generate unique codes', () => {
@@ -25,10 +25,16 @@ describe('Code Generator', () => {
   });
 
   describe('isValidPlanCode', () => {
-    it('should validate correct codes', () => {
-      expect(isValidPlanCode('ABCD-1234')).toBe(false); // 1 is not valid
+    it('should validate correct codes (new format XXXX-XXXX-XXXX)', () => {
+      expect(isValidPlanCode('ABCD-2345-EFGH')).toBe(true);
+      expect(isValidPlanCode('WXYZ-6789-ABCD')).toBe(true);
+      expect(isValidPlanCode('ABCD-1234-EFGH')).toBe(false); // 1 is not valid
+    });
+
+    it('should validate legacy codes (old format XXXX-XXXX)', () => {
       expect(isValidPlanCode('ABCD-2345')).toBe(true);
       expect(isValidPlanCode('WXYZ-6789')).toBe(true);
+      expect(isValidPlanCode('ABCD-1234')).toBe(false); // 1 is not valid
     });
 
     it('should reject invalid codes', () => {
