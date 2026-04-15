@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 declare global {
   interface Window {
@@ -30,8 +30,10 @@ export default function AdBanner({
   format = 'auto',
   className = '' 
 }: AdBannerProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const adRef = useRef<HTMLModElement>(null);
   const isLoaded = useRef(false);
+  const [hasAd, setHasAd] = useState(true); // Asumir que hay anuncio, ocultar si no carga
 
   useEffect(() => {
     // Solo cargar el anuncio una vez
@@ -45,7 +47,28 @@ export default function AdBanner({
       }
     } catch (error) {
       console.error('Error loading ad:', error);
+      setHasAd(false);
     }
+  }, []);
+
+  // Observar si el anuncio tiene contenido después de un tiempo
+  useEffect(() => {
+    const checkAdLoaded = setTimeout(() => {
+      if (adRef.current) {
+        // Verificar si el ins tiene contenido (iframe o similar)
+        const hasContent = adRef.current.childElementCount > 0 || 
+                          adRef.current.innerHTML.trim().length > 0;
+        
+        // También verificar si tiene altura (anuncio renderizado)
+        const hasHeight = adRef.current.offsetHeight > 0;
+        
+        if (!hasContent && !hasHeight) {
+          setHasAd(false);
+        }
+      }
+    }, 3000); // Esperar 3 segundos para que cargue
+
+    return () => clearTimeout(checkAdLoaded);
   }, []);
 
   // Estilos según el formato
@@ -77,12 +100,24 @@ export default function AdBanner({
     );
   }
 
+  // Si no hay anuncio, no renderizar nada
+  if (!hasAd) {
+    return null;
+  }
+
   return (
-    <div className={`ad-container ${className}`}>
+    <div 
+      ref={containerRef}
+      className={`ad-container ${className}`}
+      style={{ minHeight: 0 }} // Colapsar si está vacío
+    >
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={formatStyles[format]}
+        style={{
+          ...formatStyles[format],
+          minHeight: 0, // Permitir colapsar
+        }}
         data-ad-client={clientId}
         data-ad-slot={adSlot}
         data-ad-format={format === 'auto' ? 'auto' : undefined}
