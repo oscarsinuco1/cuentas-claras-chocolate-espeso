@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { X, ArrowRightLeft, Copy, Loader2 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { calculateApi } from '@/services/api';
 
 interface Props {
@@ -117,7 +118,7 @@ export default function CalculationModal({ planCode, onClose }: Props) {
                           <button
                             onClick={() => {
                               navigator.clipboard.writeText(t.paymentLink!);
-                              alert('Copiado: ' + t.paymentLink);
+                              toast.success('Info de pago copiada', { duration: 1500 });
                             }}
                             className="mt-2 inline-flex items-center gap-1 text-sm px-2 py-1 rounded transition-colors"
                             style={{ color: '#5AAFFA', backgroundColor: 'rgba(35, 116, 225, 0.2)' }}

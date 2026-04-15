@@ -247,7 +247,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                               <button
                                 onClick={() => {
                                   navigator.clipboard.writeText(p.paymentLink!);
-                                  alert('Copiado: ' + p.paymentLink);
+                                  toast.success('Info de pago copiada', { duration: 1500 });
                                 }}
                                 className="flex items-center gap-1 px-2 py-0.5 rounded text-xs transition-colors"
                                 style={{ backgroundColor: 'rgba(35, 116, 225, 0.2)', color: '#5AAFFA' }}

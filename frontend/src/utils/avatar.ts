@@ -1,10 +1,12 @@
 /**
- * Get Multiavatar URL for a participant
+ * Get DiceBear avatar URL for a participant via backend proxy
+ * Using 'bottts' style for fun robot avatars
  * @param seed - The avatar seed stored in the database
  * @param name - Fallback to name if seed is not available
- * @returns URL to the Multiavatar SVG
+ * @returns URL to the avatar SVG via backend proxy
  */
 export function getAvatarUrl(seed?: string | null, name?: string): string {
   const avatarId = seed || name || 'default';
-  return `https://api.multiavatar.com/${encodeURIComponent(avatarId)}.svg`;
+  const apiUrl = import.meta.env.VITE_API_URL || '';
+  return `${apiUrl}/api/avatar/${encodeURIComponent(avatarId)}`;
 }

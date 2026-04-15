@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { ArrowRightLeft, Copy, CheckCircle } from 'lucide-react';
+import toast from 'react-hot-toast';
 import type { Participant, Expense, Currency } from '@/types';
 import { formatMoney } from '@/utils/currency';
 
@@ -152,7 +153,7 @@ export default function LiveCalculations({ participants, expenses, currency }: P
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(t.paymentLink!);
-                    alert('Copiado: ' + t.paymentLink);
+                    toast.success('Info de pago copiada', { duration: 1500 });
                   }}
                   className="p-1.5 rounded-full transition-all"
                   style={{ backgroundColor: 'rgba(35, 116, 225, 0.2)', color: '#5AAFFA' }}

@@ -13,6 +13,7 @@ import { participantRoutes } from './routes/participant.routes.js';
 import { expenseRoutes } from './routes/expense.routes.js';
 import { historyRoutes } from './routes/history.routes.js';
 import { calculateRoutes } from './routes/calculate.routes.js';
+import { avatarRoutes } from './routes/avatar.routes.js';
 import { setupSocketHandlers } from './services/socket.service.js';
 
 const PORT = parseInt(process.env['PORT'] ?? '3000', 10);
@@ -63,6 +64,7 @@ async function buildApp() {
   await fastify.register(expenseRoutes, { prefix: '/api/plans' });
   await fastify.register(historyRoutes, { prefix: '/api/plans' });
   await fastify.register(calculateRoutes, { prefix: '/api/plans' });
+  await fastify.register(avatarRoutes, { prefix: '/api' });
 
   return fastify;
 }
