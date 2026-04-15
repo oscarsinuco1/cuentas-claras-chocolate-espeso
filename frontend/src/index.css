@@ -300,3 +300,8 @@ input[type="number"] {
   background: #444444;
 }
 
+/* Hide reCAPTCHA v3 badge - attribution text required elsewhere per Google's ToS */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+

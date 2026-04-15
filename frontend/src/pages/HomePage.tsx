@@ -163,9 +163,20 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-sm text-text-muted animate-slide-up stagger-4">
-          Divide gastos facil y rapido
-        </p>
+        <div className="text-center space-y-2 animate-slide-up stagger-4">
+          <p className="text-sm text-text-muted">
+            Divide gastos facil y rapido
+          </p>
+          <p className="text-xs text-text-muted opacity-60">
+            Protegido por reCAPTCHA.{' '}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-text-secondary">
+              Privacidad
+            </a>{' '}y{' '}
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-text-secondary">
+              Términos
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
