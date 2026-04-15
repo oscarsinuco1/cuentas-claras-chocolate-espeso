@@ -45,9 +45,13 @@ export const usePlanStore = create<PlanState>((set) => ({
   setParticipants: (participants) => set({ participants }),
   
   addParticipant: (participant) =>
-    set((state) => ({
-      participants: [...state.participants, participant],
-    })),
+    set((state) => {
+      // Avoid duplicates (WebSocket may send same event we already handled locally)
+      if (state.participants.some(p => p.id === participant.id)) {
+        return state;
+      }
+      return { participants: [...state.participants, participant] };
+    }),
   
   updateParticipant: (participant) =>
     set((state) => ({
@@ -66,9 +70,13 @@ export const usePlanStore = create<PlanState>((set) => ({
   setExpenses: (expenses) => set({ expenses }),
   
   addExpense: (expense) =>
-    set((state) => ({
-      expenses: [expense, ...state.expenses],
-    })),
+    set((state) => {
+      // Avoid duplicates (WebSocket may send same event we already handled locally)
+      if (state.expenses.some(e => e.id === expense.id)) {
+        return state;
+      }
+      return { expenses: [expense, ...state.expenses] };
+    }),
   
   updateExpense: (expense) =>
     set((state) => ({

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Plus, UserPlus } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { expenseApi } from '@/services/api';
+import { usePlanStore } from '@/hooks/usePlanStore';
 import { formatMoney } from '@/utils/currency';
 import type { Participant, Currency } from '@/types';
 
@@ -20,6 +21,8 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const amountRef = useRef<HTMLInputElement>(null);
+  
+  const { addParticipant, addExpense } = usePlanStore();
 
   // Filter suggestions based on input
   useEffect(() => {
@@ -49,11 +52,20 @@ export default function QuickExpenseForm({ planCode, participants, currency }: P
     setIsSubmitting(true);
     try {
       const mult = parseInt(multiplier, 10) || 1;
-      await expenseApi.quickAdd(planCode, {
+      const result = await expenseApi.quickAdd(planCode, {
         participantName: trimmedName,
         amount: numAmount,
         multiplier: mult > 1 ? mult : undefined,
       });
+      
+      // Update local state immediately (don't wait for WebSocket)
+      if (result._newParticipant) {
+        addParticipant(result._newParticipant);
+      }
+      // Remove _newParticipant before adding to expenses
+      const { _newParticipant, ...expense } = result;
+      addExpense(expense);
+      
       setName('');
       setAmount('');
       setMultiplier('1');

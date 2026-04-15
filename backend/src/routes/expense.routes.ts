@@ -97,7 +97,10 @@ export async function expenseRoutes(fastify: FastifyInstance) {
       where: { planId: plan.id, name: body.participantName },
     });
 
+    let isNewParticipant = false;
+
     if (!participant) {
+      isNewParticipant = true;
       participant = await prisma.participant.create({
         data: {
           planId: plan.id,
@@ -135,7 +138,11 @@ export async function expenseRoutes(fastify: FastifyInstance) {
     await invalidateCache(`plan:${code}:*`);
     await publishEvent(getPlanChannel(code), { type: 'EXPENSE_ADDED', data: expense });
 
-    return reply.status(201).send(expense);
+    // Return expense with participant info if new (so frontend can update locally)
+    return reply.status(201).send({
+      ...expense,
+      _newParticipant: isNewParticipant ? participant : undefined,
+    });
   });
 
   // Update expense
