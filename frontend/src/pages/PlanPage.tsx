@@ -12,6 +12,7 @@ import QuickExpenseForm from '@/components/QuickExpenseForm';
 import ParticipantList from '@/components/ParticipantList';
 import LiveCalculations from '@/components/LiveCalculations';
 import HistoryModal from '@/components/HistoryModal';
+import AdBanner from '@/components/AdBanner';
 
 export default function PlanPage() {
   const { code } = useParams<{ code: string }>();
@@ -220,6 +221,9 @@ Código: ${code}`;
           <QuickExpenseForm planCode={code!} participants={participants} currency={currency} />
         </div>
 
+        {/* Ad Banner 1 - Después del formulario */}
+        <AdBanner adSlot="1234567890" format="horizontal" className="animate-slide-up" />
+
         {/* Summary Card - Simple */}
         <div className="card animate-slide-up stagger-1" style={{ backgroundColor: '#3B82F6' }}>
           <div className="text-center py-1">
@@ -237,6 +241,9 @@ Código: ${code}`;
         <div className="animate-slide-up stagger-2">
           <ParticipantList planCode={code!} participants={participants} expenses={expenses} currency={currency} />
         </div>
+
+        {/* Ad Banner 2 - Después de participantes */}
+        <AdBanner adSlot="0987654321" format="horizontal" className="animate-slide-up stagger-2" />
 
         {/* Transfers Only */}
         <div className="animate-slide-up stagger-3">
