@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { participantApi, expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
 import { getAvatarUrl } from '@/utils/avatar';
+import { usePlanStore } from '@/hooks/usePlanStore';
 import type { Participant, Expense, Currency } from '@/types';
 
 interface Props {
@@ -19,6 +20,7 @@ interface ExpenseEdit {
 }
 
 export default function ParticipantList({ planCode, participants, expenses, currency }: Props) {
+  const { updateParticipant, removeParticipant, updateExpense, removeExpense } = usePlanStore();
   const [isExpanded, setIsExpanded] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ name: '', paymentLink: '', multiplier: '1' });
@@ -63,17 +65,19 @@ export default function ParticipantList({ planCode, participants, expenses, curr
     const multiplier = parseInt(editForm.multiplier) || 1;
     try {
       // Update participant
-      await participantApi.update(planCode, id, {
+      const updatedParticipant = await participantApi.update(planCode, id, {
         name: editForm.name,
         paymentLink: editForm.paymentLink || null,
         multiplier: Math.max(1, Math.min(10, multiplier)),
       });
+      updateParticipant(updatedParticipant);
       
       // Update expenses
       for (const exp of editExpenses) {
         const numAmount = parseInt(exp.amount.replace(/\D/g, ''), 10);
         if (numAmount && numAmount > 0) {
-          await expenseApi.update(planCode, exp.id, { amount: numAmount });
+          const updatedExpense = await expenseApi.update(planCode, exp.id, { amount: numAmount });
+          updateExpense(updatedExpense);
         }
       }
       
@@ -88,6 +92,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
     if (!confirm('¿Eliminar participante y todos sus gastos?')) return;
     try {
       await participantApi.remove(planCode, id);
+      removeParticipant(id);
       toast.success('Eliminado');
     } catch {
       toast.error('Error al eliminar');
@@ -97,6 +102,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
   const handleDeleteExpense = async (expenseId: string) => {
     try {
       await expenseApi.delete(planCode, expenseId);
+      removeExpense(expenseId);
       setEditExpenses(prev => prev.filter(e => e.id !== expenseId));
       toast.success('Gasto eliminado');
     } catch {

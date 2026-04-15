@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
 import { getAvatarUrl } from '@/utils/avatar';
+import { usePlanStore } from '@/hooks/usePlanStore';
 import type { Expense, Currency, Participant } from '@/types';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function ExpenseList({ planCode, expenses, participants, currency }: Props) {
+  const { updateExpense, removeExpense } = usePlanStore();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editAmount, setEditAmount] = useState('');
 
@@ -21,6 +23,7 @@ export default function ExpenseList({ planCode, expenses, participants, currency
     if (!confirm('¿Eliminar este gasto?')) return;
     try {
       await expenseApi.delete(planCode, id);
+      removeExpense(id);
       toast.success('Eliminado');
     } catch {
       toast.error('Error al eliminar');
@@ -39,7 +42,8 @@ export default function ExpenseList({ planCode, expenses, participants, currency
       return;
     }
     try {
-      await expenseApi.update(planCode, id, { amount: numAmount });
+      const updated = await expenseApi.update(planCode, id, { amount: numAmount });
+      updateExpense(updated);
       setEditingId(null);
       toast.success('Actualizado');
     } catch {
