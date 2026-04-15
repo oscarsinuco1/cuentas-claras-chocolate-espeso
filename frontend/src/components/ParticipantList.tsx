@@ -1,10 +1,11 @@
 import { useState, useMemo } from 'react';
-import { Users, Link as LinkIcon, ChevronDown, ChevronUp, Pencil, Trash2, X, Check, RefreshCw } from 'lucide-react';
+import { Users, Link as LinkIcon, ChevronDown, ChevronUp, Pencil, Trash2, X, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { participantApi, expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
-import { getAvatarUrl, generateAvatarSeed } from '@/utils/avatar';
+import { getAvatarUrl } from '@/utils/avatar';
 import { usePlanStore } from '@/hooks/usePlanStore';
+import AvatarPicker from '@/components/AvatarPicker';
 import type { Participant, Expense, Currency } from '@/types';
 
 interface Props {
@@ -25,6 +26,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ name: '', paymentLink: '', multiplier: '1' });
   const [editExpenses, setEditExpenses] = useState<ExpenseEdit[]>([]);
+  const [avatarPickerFor, setAvatarPickerFor] = useState<Participant | null>(null);
 
   // Group expenses by participant
   const expensesByParticipant = useMemo(() => {
@@ -99,9 +101,8 @@ export default function ParticipantList({ planCode, participants, expenses, curr
     }
   };
 
-  const handleChangeAvatar = async (participantId: string) => {
+  const handleAvatarSelect = async (participantId: string, newSeed: string) => {
     try {
-      const newSeed = generateAvatarSeed();
       const updated = await participantApi.updateAvatar(planCode, participantId, newSeed);
       updateParticipant(updated);
       toast.success('Avatar actualizado', { duration: 1500 });
@@ -248,7 +249,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => handleChangeAvatar(p.id)}
+                          onClick={() => setAvatarPickerFor(p)}
                           className="relative group cursor-pointer"
                           title="Cambiar avatar"
                         >
@@ -258,7 +259,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                             className="w-10 h-10 rounded-lg shadow-md transition-all group-hover:opacity-50"
                           />
                           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <RefreshCw className="w-5 h-5 text-white drop-shadow-lg" />
+                            <Pencil className="w-4 h-4 text-white drop-shadow-lg" />
                           </div>
                         </button>
                         <div>
@@ -325,7 +326,16 @@ export default function ParticipantList({ planCode, participants, expenses, curr
           })}
         </div>
       )}
+
+      {/* Avatar Picker Modal */}
+      {avatarPickerFor && (
+        <AvatarPicker
+          currentSeed={avatarPickerFor.avatarSeed}
+          name={avatarPickerFor.name}
+          onSelect={(seed) => handleAvatarSelect(avatarPickerFor.id, seed)}
+          onClose={() => setAvatarPickerFor(null)}
+        />
+      )}
     </div>
   );
 }
-
