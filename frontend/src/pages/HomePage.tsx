@@ -77,7 +77,7 @@ export default function HomePage() {
         </div>
 
         {/* Join Plan */}
-        <div className="card animate-slide-up stagger-1">
+        <div id="unirse-plan" className="card animate-slide-up stagger-1">
           <div className="flex items-center gap-3 mb-4">
           <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#3B82F6' }}>
               <Users className="w-5 h-5 text-white" />
@@ -116,7 +116,7 @@ export default function HomePage() {
         </div>
 
         {/* Create Plan */}
-        <div className="card animate-slide-up stagger-3">
+        <div id="crear-plan" className="card animate-slide-up stagger-3">
           <div className="flex items-center gap-3 mb-4">
           <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#3B82F6' }}>
               <Plus className="w-5 h-5 text-white" />
