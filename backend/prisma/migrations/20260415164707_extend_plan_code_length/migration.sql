@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Plan" ALTER COLUMN "code" SET DATA TYPE VARCHAR(14);

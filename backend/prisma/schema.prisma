@@ -11,7 +11,7 @@ datasource db {
 // Plan de gastos (sesión compartible)
 model Plan {
   id          String   @id @default(cuid())
-  code        String   @unique @db.VarChar(10) // Código tipo CHOCO-A1B2
+  code        String   @unique @db.VarChar(14) // Código XXXX-XXXX-XXXX (14 chars)
   name        String   @db.VarChar(100)
   description String?  @db.VarChar(500)
   currency    String   @default("COP") @db.VarChar(3) // COP, USD, EUR, etc.
