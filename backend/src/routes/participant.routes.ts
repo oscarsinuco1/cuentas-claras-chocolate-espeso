@@ -4,24 +4,17 @@ import { prisma } from '../utils/prisma.js';
 import { historyService } from '../services/history.service.js';
 import { invalidateCache, publishEvent, getPlanChannel } from '../utils/redis.js';
 import { generateAvatarSeed } from '../utils/codeGenerator.js';
-import { isValidPaymentUrl, INVALID_PAYMENT_URL_MESSAGE } from '../utils/paymentValidation.js';
-
-// Custom Zod refinement for payment URL validation
-const paymentLinkSchema = z.string().max(500).refine(
-  (url) => !url || isValidPaymentUrl(url),
-  { message: INVALID_PAYMENT_URL_MESSAGE }
-);
 
 // Schemas
 const createParticipantSchema = z.object({
   name: z.string().min(1).max(50),
-  paymentLink: paymentLinkSchema.optional(),
+  paymentLink: z.string().max(500).transform(s => s.trim()).optional(),
   multiplier: z.number().int().min(1).max(10).default(1),
 });
 
 const updateParticipantSchema = z.object({
   name: z.string().min(1).max(50).optional(),
-  paymentLink: paymentLinkSchema.nullable().optional(),
+  paymentLink: z.string().max(500).transform(s => s.trim()).nullable().optional(),
   multiplier: z.number().int().min(1).max(10).optional(),
   isActive: z.boolean().optional(),
 });
