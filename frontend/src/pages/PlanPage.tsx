@@ -222,7 +222,7 @@ Código: ${code}`;
         </div>
 
         {/* Ad Banner 1 - Después del formulario */}
-        <AdBanner adSlot="1234567890" format="horizontal" className="animate-slide-up" />
+        <AdBanner adSlot="2985305921" format="auto" className="animate-slide-up" />
 
         {/* Summary Card - Simple */}
         <div className="card animate-slide-up stagger-1" style={{ backgroundColor: '#3B82F6' }}>
@@ -243,7 +243,7 @@ Código: ${code}`;
         </div>
 
         {/* Ad Banner 2 - Después de participantes */}
-        <AdBanner adSlot="0987654321" format="horizontal" className="animate-slide-up stagger-2" />
+        <AdBanner adSlot="5007179048" format="auto" className="animate-slide-up stagger-2" />
 
         {/* Transfers Only */}
         <div className="animate-slide-up stagger-3">
