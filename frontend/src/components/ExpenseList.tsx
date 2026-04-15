@@ -3,15 +3,17 @@ import { Trash2, Receipt, Pencil, Check, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
-import type { Expense, Currency } from '@/types';
+import { getAvatarUrl } from '@/utils/avatar';
+import type { Expense, Currency, Participant } from '@/types';
 
 interface Props {
   planCode: string;
   expenses: Expense[];
+  participants: Participant[];
   currency: Currency;
 }
 
-export default function ExpenseList({ planCode, expenses, currency }: Props) {
+export default function ExpenseList({ planCode, expenses, participants, currency }: Props) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editAmount, setEditAmount] = useState('');
 
@@ -55,15 +57,9 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
     return date.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
   };
 
-  // Color palette for expense avatars
-  const avatarColors = [
-    'from-primary-500 to-primary-600',
-    'from-success-400 to-success-500',
-    'from-warning-400 to-warning-500',
-    'from-danger-400 to-danger-500',
-    'from-primary-400 to-primary-500',
-    'from-success-500 to-success-600',
-  ];
+  // Helper to get participant by ID
+  const getParticipant = (participantId: string) => 
+    participants.find(p => p.id === participantId);
 
   if (expenses.length === 0) {
     return (
@@ -88,7 +84,9 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
       </div>
 
       <div className="space-y-3 max-h-96 overflow-y-auto">
-        {expenses.map((expense, index) => (
+        {expenses.map((expense) => {
+          const participant = getParticipant(expense.participantId);
+          return (
           <div
             key={expense.id}
             className="p-4 rounded-2xl border-2 transition-all"
@@ -99,9 +97,11 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${avatarColors[index % avatarColors.length]} flex items-center justify-center text-white font-bold shadow-md`}>
-                  {expense.participant?.name?.charAt(0).toUpperCase() || '?'}
-                </div>
+                <img 
+                  src={getAvatarUrl(participant?.avatarSeed, expense.participant?.name)} 
+                  alt={expense.participant?.name || 'Avatar'}
+                  className="w-11 h-11 rounded-xl shadow-md"
+                />
                 <div>
                   <p className="font-bold text-text-primary">{expense.participant?.name || 'Desconocido'}</p>
                   <p className="text-xs text-text-secondary">
@@ -157,7 +157,8 @@ export default function ExpenseList({ planCode, expenses, currency }: Props) {
               )}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

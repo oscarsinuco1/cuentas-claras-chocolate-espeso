@@ -33,6 +33,7 @@ model Participant {
   planId        String
   plan          Plan     @relation(fields: [planId], references: [id], onDelete: Cascade)
   name          String   @db.VarChar(50)
+  avatarSeed    String?  @db.VarChar(20) // Seed para Multiavatar
   paymentLink   String?  @db.VarChar(500) // Link de Nequi/Daviplata/etc
   multiplier    Int      @default(1) // Paga por cuántas personas
   isActive      Boolean  @default(true)

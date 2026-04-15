@@ -17,6 +17,7 @@ export interface Participant {
   id: string;
   planId: string;
   name: string;
+  avatarSeed?: string | null;
   paymentLink?: string | null;
   multiplier: number;
   isActive: boolean;

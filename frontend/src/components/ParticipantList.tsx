@@ -3,17 +3,8 @@ import { Users, Link as LinkIcon, ChevronDown, ChevronUp, Pencil, Trash2, X, Che
 import toast from 'react-hot-toast';
 import { participantApi, expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
+import { getAvatarUrl } from '@/utils/avatar';
 import type { Participant, Expense, Currency } from '@/types';
-
-// Color palette for avatars - Facebook dark mode style
-const avatarColors = [
-  'from-primary-500 to-primary-600',
-  'from-success-400 to-success-500',
-  'from-warning-400 to-warning-500',
-  'from-danger-400 to-danger-500',
-  'from-primary-400 to-primary-500',
-  'from-success-500 to-success-600',
-];
 
 interface Props {
   planCode: string;
@@ -151,7 +142,7 @@ export default function ParticipantList({ planCode, participants, expenses, curr
       {isExpanded && (
         <div className="mt-3 space-y-2">
           {/* Participant list */}
-          {participants.map((p, index) => {
+          {participants.map((p) => {
             const participantExpenses = expensesByParticipant.get(p.id) || [];
             const totalPaid = totalByParticipant.get(p.id) || 0;
             const isEditing = editingId === p.id;
@@ -239,9 +230,11 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                     /* VIEW MODE */
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${avatarColors[index % avatarColors.length]} flex items-center justify-center text-white text-lg font-bold shadow-md`}>
-                          {p.name.charAt(0).toUpperCase()}
-                        </div>
+                        <img 
+                          src={getAvatarUrl(p.avatarSeed, p.name)} 
+                          alt={p.name}
+                          className="w-10 h-10 rounded-lg shadow-md"
+                        />
                         <div>
                           <p className="font-bold text-text-primary">{p.name}</p>
                           <div className="flex items-center gap-2 text-xs flex-wrap">

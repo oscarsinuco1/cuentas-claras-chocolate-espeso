@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '../utils/prisma.js';
 import { historyService } from '../services/history.service.js';
 import { invalidateCache, publishEvent, getPlanChannel } from '../utils/redis.js';
+import { generateAvatarSeed } from '../utils/codeGenerator.js';
 
 // Schemas
 const createParticipantSchema = z.object({
@@ -63,6 +64,7 @@ export async function participantRoutes(fastify: FastifyInstance) {
       data: {
         planId: plan.id,
         name: body.name,
+        avatarSeed: generateAvatarSeed(),
         paymentLink: body.paymentLink || null,
         multiplier: body.multiplier,
       },

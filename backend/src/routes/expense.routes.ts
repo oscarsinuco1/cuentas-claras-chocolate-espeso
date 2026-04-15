@@ -4,6 +4,7 @@ import { Decimal } from '@prisma/client/runtime/library';
 import { prisma } from '../utils/prisma.js';
 import { historyService } from '../services/history.service.js';
 import { invalidateCache, publishEvent, getPlanChannel } from '../utils/redis.js';
+import { generateAvatarSeed } from '../utils/codeGenerator.js';
 
 // Schemas
 const createExpenseSchema = z.object({
@@ -101,6 +102,7 @@ export async function expenseRoutes(fastify: FastifyInstance) {
         data: {
           planId: plan.id,
           name: body.participantName,
+          avatarSeed: generateAvatarSeed(),
           multiplier: body.multiplier ?? 1,
         },
       });
