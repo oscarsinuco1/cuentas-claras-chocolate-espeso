@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
-import { Users, Link as LinkIcon, ChevronDown, ChevronUp, Pencil, Trash2, X, Check } from 'lucide-react';
+import { Users, Link as LinkIcon, ChevronDown, ChevronUp, Pencil, Trash2, X, Check, RefreshCw } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { participantApi, expenseApi } from '@/services/api';
 import { formatMoney } from '@/utils/currency';
-import { getAvatarUrl } from '@/utils/avatar';
+import { getAvatarUrl, generateAvatarSeed } from '@/utils/avatar';
 import { usePlanStore } from '@/hooks/usePlanStore';
 import type { Participant, Expense, Currency } from '@/types';
 
@@ -96,6 +96,17 @@ export default function ParticipantList({ planCode, participants, expenses, curr
       toast.success('Eliminado');
     } catch {
       toast.error('Error al eliminar');
+    }
+  };
+
+  const handleChangeAvatar = async (participantId: string) => {
+    try {
+      const newSeed = generateAvatarSeed();
+      const updated = await participantApi.updateAvatar(planCode, participantId, newSeed);
+      updateParticipant(updated);
+      toast.success('Avatar actualizado', { duration: 1500 });
+    } catch {
+      toast.error('Error al cambiar avatar');
     }
   };
 
@@ -236,11 +247,20 @@ export default function ParticipantList({ planCode, participants, expenses, curr
                     /* VIEW MODE */
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <img 
-                          src={getAvatarUrl(p.avatarSeed, p.name)} 
-                          alt={p.name}
-                          className="w-10 h-10 rounded-lg shadow-md"
-                        />
+                        <button
+                          onClick={() => handleChangeAvatar(p.id)}
+                          className="relative group cursor-pointer"
+                          title="Cambiar avatar"
+                        >
+                          <img 
+                            src={getAvatarUrl(p.avatarSeed, p.name)} 
+                            alt={p.name}
+                            className="w-10 h-10 rounded-lg shadow-md transition-all group-hover:opacity-50"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <RefreshCw className="w-5 h-5 text-white drop-shadow-lg" />
+                          </div>
+                        </button>
                         <div>
                           <p className="font-bold text-text-primary">{p.name}</p>
                           <div className="flex items-center gap-2 text-xs flex-wrap">

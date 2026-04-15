@@ -74,6 +74,12 @@ export const participantApi = {
       body: JSON.stringify(data),
     }),
 
+  updateAvatar: (planCode: string, participantId: string, avatarSeed: string) =>
+    request<Participant>(`/plans/${planCode}/participants/${participantId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ avatarSeed }),
+    }),
+
   remove: (planCode: string, participantId: string) =>
     request<void>(`/plans/${planCode}/participants/${participantId}`, { method: 'DELETE' }),
 };

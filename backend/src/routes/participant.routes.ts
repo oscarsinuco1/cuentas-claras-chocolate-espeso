@@ -17,6 +17,7 @@ const updateParticipantSchema = z.object({
   paymentLink: z.string().max(500).transform(s => s.trim()).nullable().optional(),
   multiplier: z.number().int().min(1).max(10).optional(),
   isActive: z.boolean().optional(),
+  avatarSeed: z.string().max(50).optional(),
 });
 
 export async function participantRoutes(fastify: FastifyInstance) {

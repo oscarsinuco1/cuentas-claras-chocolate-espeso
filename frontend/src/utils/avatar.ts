@@ -10,3 +10,15 @@ export function getAvatarUrl(seed?: string | null, name?: string): string {
   const apiUrl = import.meta.env.VITE_API_URL || '';
   return `${apiUrl}/api/avatar/${encodeURIComponent(avatarId)}`;
 }
+
+/**
+ * Generate a new random avatar seed (12 chars alphanumeric)
+ */
+export function generateAvatarSeed(): string {
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  let seed = '';
+  for (let i = 0; i < 12; i++) {
+    seed += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return seed;
+}
