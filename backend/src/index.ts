@@ -28,14 +28,35 @@ async function buildApp() {
   });
 
   // Security & CORS
-  await fastify.register(helmet, { contentSecurityPolicy: false });
+  await fastify.register(helmet, {
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "https://www.google.com", "https://www.gstatic.com"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "blob:"],
+        connectSrc: ["'self'", CORS_ORIGIN, "https://www.google.com"],
+        frameSrc: ["https://www.google.com"],
+      },
+    },
+    crossOriginEmbedderPolicy: false, // Required for some external resources
+  });
   await fastify.register(cors, {
     origin: CORS_ORIGIN,
     credentials: true,
   });
+  
+  // Global rate limit
   await fastify.register(rateLimit, {
-    max: 100,
+    max: 60,
     timeWindow: '1 minute',
+    keyGenerator: (request) => request.ip,
+    errorResponseBuilder: () => ({
+      statusCode: 429,
+      error: 'Too Many Requests',
+      message: 'Demasiadas solicitudes. Intenta de nuevo en un minuto.',
+    }),
   });
 
   // Swagger Documentation - Only in development

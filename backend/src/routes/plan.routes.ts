@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '../utils/prisma.js';
 import { generatePlanCode, isValidPlanCode } from '../utils/codeGenerator.js';
 import { invalidateCache, publishEvent, getPlanChannel } from '../utils/redis.js';
+import { verifyRecaptcha } from '../middleware/recaptcha.js';
 
 // Schemas
 const VALID_CURRENCIES = ['COP', 'USD', 'EUR', 'MXN', 'ARS', 'PEN', 'CLP', 'BRL'] as const;
@@ -19,7 +20,7 @@ const updatePlanSchema = z.object({
 });
 
 export async function planRoutes(fastify: FastifyInstance) {
-  // Create a new plan
+  // Create a new plan (protected with reCAPTCHA + stricter rate limit)
   fastify.post('/', {
     schema: {
       description: 'Create a new expense plan',
@@ -34,6 +35,13 @@ export async function planRoutes(fastify: FastifyInstance) {
         },
       },
     },
+    config: {
+      rateLimit: {
+        max: 10,
+        timeWindow: '1 minute',
+      },
+    },
+    preHandler: verifyRecaptcha,
   }, async (request, reply) => {
     const body = createPlanSchema.parse(request.body);
     

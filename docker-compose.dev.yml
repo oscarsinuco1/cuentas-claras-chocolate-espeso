@@ -1,0 +1,36 @@
+# Development docker-compose override
+# Use with: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# This file provides development-friendly defaults for local testing.
+# DO NOT use these values in production!
+
+services:
+  postgres:
+    environment:
+      POSTGRES_USER: ccce_dev
+      POSTGRES_PASSWORD: dev_password_123
+      POSTGRES_DB: cuentas_claras
+    ports:
+      - "5432:5432"
+
+  redis:
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru --requirepass dev_redis_pass
+    environment:
+      REDIS_PASSWORD: dev_redis_pass
+    ports:
+      - "6379:6379"
+
+  backend:
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://ccce_dev:dev_password_123@postgres:5432/cuentas_claras
+      REDIS_URL: redis://:dev_redis_pass@redis:6379
+      CORS_ORIGIN: http://localhost:5173
+      RECAPTCHA_ENABLED: "false"
+
+  frontend:
+    build:
+      args:
+        VITE_API_URL: http://localhost:3000
+        VITE_WS_URL: ws://localhost:3000
+        VITE_RECAPTCHA_SITE_KEY: ""

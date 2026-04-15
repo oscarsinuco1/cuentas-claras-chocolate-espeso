@@ -1,24 +1,36 @@
 import Redis from 'ioredis';
 
-const REDIS_URL = process.env['REDIS_URL'] ?? 'redis://localhost:6379';
+const IS_PRODUCTION = process.env['NODE_ENV'] === 'production';
+const REDIS_URL = process.env['REDIS_URL'];
+
+// In production, REDIS_URL must be set (Railway provides this automatically)
+if (IS_PRODUCTION && !REDIS_URL) {
+  throw new Error('REDIS_URL environment variable is required in production');
+}
+
+// Fallback to localhost only in development
+const redisConnectionUrl = REDIS_URL ?? 'redis://localhost:6379';
+
+const redisOptions = {
+  maxRetriesPerRequest: 3,
+  lazyConnect: true,
+  enableReadyCheck: true,
+  retryDelayOnFailover: 100,
+  retryDelayOnClusterDown: 100,
+};
 
 // Main Redis client for general operations
-export const redis = new Redis(REDIS_URL, {
-  maxRetriesPerRequest: 3,
-  lazyConnect: true,
-});
+export const redis = new Redis(redisConnectionUrl, redisOptions);
 
 // Separate client for publishing
-export const redisPub = new Redis(REDIS_URL, {
-  maxRetriesPerRequest: 3,
-  lazyConnect: true,
-});
+export const redisPub = new Redis(redisConnectionUrl, redisOptions);
 
 // Separate client for subscribing
-export const redisSub = new Redis(REDIS_URL, {
-  maxRetriesPerRequest: 3,
-  lazyConnect: true,
-});
+export const redisSub = new Redis(redisConnectionUrl, redisOptions);
+
+// Log connection status
+redis.on('connect', () => console.log('Redis connected'));
+redis.on('error', (err) => console.error('Redis error:', err.message));
 
 // Cache helpers
 const CACHE_TTL = 60; // 60 seconds default TTL

@@ -1,4 +1,5 @@
 import type { Plan, Participant, Expense, CalculationResult, HistoryEntry, PlanSummary, Currency } from '@/types';
+import { getRecaptchaToken } from './recaptcha';
 
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
@@ -23,10 +24,25 @@ async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
+/**
+ * Make a protected request with reCAPTCHA token
+ */
+async function protectedRequest<T>(endpoint: string, action: string, options?: RequestInit): Promise<T> {
+  const token = await getRecaptchaToken(action);
+  
+  return request<T>(endpoint, {
+    ...options,
+    headers: {
+      ...options?.headers,
+      ...(token && { 'x-recaptcha-token': token }),
+    },
+  });
+}
+
 // Plans
 export const planApi = {
   create: (data: { name: string; description?: string; currency?: Currency }) =>
-    request<Plan>('/plans', { method: 'POST', body: JSON.stringify(data) }),
+    protectedRequest<Plan>('/plans', 'create_plan', { method: 'POST', body: JSON.stringify(data) }),
 
   get: (code: string) =>
     request<Plan>(`/plans/${code}`),
