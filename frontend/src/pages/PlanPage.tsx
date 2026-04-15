@@ -164,7 +164,9 @@ Código: ${code}`;
     );
   }
 
-  const totalExpenses = expenses.reduce((sum, e) => sum + Number(e.amount), 0);
+  // Only count expenses from existing participants
+  const validExpenses = expenses.filter(e => participants.some(p => p.id === e.participantId));
+  const totalExpenses = validExpenses.reduce((sum, e) => sum + Number(e.amount), 0);
   const currency = plan.currency || 'COP';
 
   return (

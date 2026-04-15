@@ -59,6 +59,8 @@ export const usePlanStore = create<PlanState>((set) => ({
   removeParticipant: (participantId) =>
     set((state) => ({
       participants: state.participants.filter((p) => p.id !== participantId),
+      // Also remove associated expenses
+      expenses: state.expenses.filter((e) => e.participantId !== participantId),
     })),
   
   setExpenses: (expenses) => set({ expenses }),

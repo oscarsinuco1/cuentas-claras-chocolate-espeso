@@ -36,14 +36,19 @@ export default function LiveCalculations({ participants, expenses, currency }: P
       return null;
     }
 
+    // Filter expenses to only include those from existing participants
+    const validExpenses = expenses.filter(e => 
+      activeParticipants.some(p => p.id === e.participantId)
+    );
+
     // Calculate totals
-    const totalExpenses = expenses.reduce((sum, e) => sum + Number(e.amount), 0);
+    const totalExpenses = validExpenses.reduce((sum, e) => sum + Number(e.amount), 0);
     const totalPeople = activeParticipants.reduce((sum, p) => sum + p.multiplier, 0);
     const perPersonShare = totalPeople > 0 ? totalExpenses / totalPeople : 0;
 
     // Calculate balances
     const balances: Balance[] = activeParticipants.map(p => {
-      const totalPaid = expenses
+      const totalPaid = validExpenses
         .filter(e => e.participantId === p.id)
         .reduce((sum, e) => sum + Number(e.amount), 0);
       
