@@ -6,6 +6,9 @@ declare global {
   }
 }
 
+// 🚨 TEMPORAL: Cambiar a false cuando Google apruebe los anuncios
+const ADS_DISABLED = true;
+
 interface AdBannerProps {
   /**
    * Tu data-ad-slot de Google AdSense
@@ -30,10 +33,15 @@ export default function AdBanner({
   format = 'auto',
   className = '' 
 }: AdBannerProps) {
+  // 🚨 Si los anuncios están deshabilitados, no renderizar nada
+  if (ADS_DISABLED) {
+    return null;
+  }
+
   const containerRef = useRef<HTMLDivElement>(null);
   const adRef = useRef<HTMLModElement>(null);
   const isLoaded = useRef(false);
-  const [hasAd, setHasAd] = useState(true); // Asumir que hay anuncio, ocultar si no carga
+  const [hasAd, setHasAd] = useState(true);
 
   useEffect(() => {
     // Solo cargar el anuncio una vez
